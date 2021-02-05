@@ -1,0 +1,51 @@
+{
+  "name": "LITE default profile",
+  "connections": [
+    {
+      "name": "liCloud",
+      "enabled": true,
+      "connType": "cloud",
+      "isPrimary": true,
+      "URL": "http://cloud-pr-dev1.lifeimage.lan:8080/universal-inbox",
+      "inout": "both"
+    },
+    {
+      "name": "egs",
+      "enabled": true,
+      "connType": "lite",
+      "remoteHostname": "egs-prdev1.lifeimage.lan",
+      "localHostname": "localhost",
+      "remotePort": 443,
+      "localPort": 443,
+      "EGSServicePoint": "localhost",
+      "LITEServicePoint": "localhost",
+      "minEGSBatchSize": 10240000,
+      "sendIntermediateResults": false,
+      "httpRequestTimeout": "00:30:00",
+      "calcCompressionStats": false,
+      "maxConnectionsPerServer": 10,
+      "useTLS": false,
+      "maxAttempts": 10,
+      "inout": "both"
+    }
+  ],
+    "startupParams": {
+    "getServerProfile": true,
+    "putServerProfile": true,
+    "generateSchema": false,
+    "validateProfile": true
+  },
+  "logger": {
+    "SplunkTraceLevel": "Info",
+    "FileTraceLevel": "Verbose",
+    "tracePattern": null
+  },
+"version": 0,
+  "updateUsername": "liadmin",
+  "updatePassword": {
+       "Field": "LITE-TGD7oiiV2aLFy7PNVoErzw==",
+       "sharedKey": "aFfKiuDt9V5ppT/Du2IYahjkBYSE+rSUvxlc8adotm8=",
+       "IV": "tVKebfD2xud9Qb1SZ0L7eA=="
+  }
+
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Bootstrap",
+  "startupParams": {
+    "localProfilePath": "Profiles/DefaultProfile_qa.json",
+    "saveProfilePath": "Profiles/DefaultProfile_qa.json",
+    "getServerProfile": true,
+    "putServerProfile": true,
+    "generateSchema": false,
+    "validateProfile": true
+  },
+  "logger": {
+    "SplunkTraceLevel": "Info",
+    "FileTraceLevel": "Verbose",
+    "tracePattern": null
+  }
+
+}

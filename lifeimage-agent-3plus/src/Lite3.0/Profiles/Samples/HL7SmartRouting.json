@@ -1,0 +1,291 @@
+{
+  "availableCodeVersions": null,
+  "activationTime": "0001-01-01T05:00:00Z",
+  "backlogDetection": false,
+  "backlogInterval": 5000,
+  "connections": [
+    {
+      "name": "HL71",
+      "enabled": true,
+      "connType": "hl7",
+      "remoteHostname": "localhost",
+      "localHostname": "localhost",
+      "remotePort": 12577,
+      "localPort": 12576,
+      "receiveBufferSize": 256000,
+      "exclusiveAddressUse": true,
+      "linger": false,
+      "lingerms": 10,
+      "noDelay": false,
+      "receiveTimeout": 0,
+      "sendBufferSize": 256000,
+      "sendTimeout": 0,
+      "ackMode": "Custom",
+      "maxHL7InboundTasks": 1,
+      "ServicePoint": "localhost",
+      "stores": {
+        "AddressBook + CurrentUser": false,
+        "AuthRoot + CurrentUser": false,
+        "CertificateAuthority + CurrentUser": false,
+        "Disallowed + CurrentUser": true,
+        "My + CurrentUser": true,
+        "Root + CurrentUser": true,
+        "TrustedPeople + CurrentUser": false,
+        "TrustedPublisher + CurrentUser": false,
+        "AddressBook + LocalMachine": false,
+        "AuthRoot + LocalMachine": false,
+        "CertificateAuthority + LocalMachine": false,
+        "Disallowed + LocalMachine": true,
+        "My + LocalMachine": true,
+        "Root + LocalMachine": true,
+        "TrustedPeople + LocalMachine": false,
+        "TrustedPublisher + LocalMachine": false
+      },
+      "X509StoreName": 0,
+      "X509StoreLocation": 0,
+      "EnforceServerCertificate": false,
+      "ResponseCacheExpiryMinutes": 60,
+      "requestResponseEnabled": false,
+      "UseIPV4": true,
+      "UseIPV6": true,
+      "sendIntermediateResults": false,
+      "isPrimary": false,
+      "maxInboundConnections": 30,
+      "useTLS": false,
+      "responsive": true,
+      "sharedKey": "suqpy/JFp7WSYm5Ij0P4FqpVAofCTh3Zj8ELuDhkXjw=",
+      "IV": "ort0hcZC0NOtUoPlUQuVpQ==",
+      "maxAttempts": 10,
+      "retryDelayMinutes": 10,
+      "inout": "both",
+      "pushPull": "push"
+    },
+    {
+      "name": "bourne1",
+      "enabled": true,
+      "connType": "cloud",
+      "remotePort": 0,
+      "localPort": 0,
+      "shareDestinations": [
+        {
+          "boxId": "104",
+          "groupId": "127",
+          "groupName": "bourne3pc",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bourne3",
+          "boxName": "bourne3pc",
+          "boxUuid": "19db62ba-128d-412c-8c4f-df28351e8ae0"
+        },
+        {
+          "boxId": "103",
+          "groupId": "124",
+          "groupName": "gbourne2pcUniversity of Iowa Hospital & Clinicss",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bourne2",
+          "boxName": "bourne2pc",
+          "boxUuid": "ad0fb00b-a619-4e83-a216-dfc0bb02a355"
+        }
+      ],
+      "Boxes": [
+        {
+          "boxId": null,
+          "groupId": null,
+          "groupName": null,
+          "publishableBoxType": null,
+          "organizationName": null,
+          "boxName": "LITESample",
+          "boxUuid": "19db62ba-128d-412c-8c4f-df28351e8ae0"
+        }
+      ],
+      "URL": "http://cloud-pr-dev1.lifeimage.lan:8080/universal-inbox",
+      "httpRequestTimeout": "00:31:00",
+      "ServicePoint": "localhost",
+      "stores": {},
+      "X509StoreName": 0,
+      "X509StoreLocation": 0,
+      "EnforceServerCertificate": false,
+      "ResponseCacheExpiryMinutes": 60,
+      "requestResponseEnabled": true,
+      "UseIPV4": true,
+      "UseIPV6": true,
+      "sendIntermediateResults": false,
+      "isPrimary": true,
+      "calcCompressionStats": false,
+      "maxStudyDownloadTasks": 5,
+      "maxHL7UploadTasks": 5,
+      "maxPostResponseTasks": 1,
+      "maxWadoTasks": 5,
+      "maxStowTasks": 5,
+      "organizationCode": "bourne1",
+      "serviceName": "bourne1pc",
+      "subscriptionCode": "8faaf720-b748-4da6-b782-bbb720edeb81",
+      "tenantID": "02c99a42-e427-4b7b-a5b0-da8081289530",
+      "studySeriesSOPUids": [],
+      "minStowBatchSize": 5000000,
+      "maxRequestAgeMinutes": 30,
+      "maxConnectionsPerServer": 60,
+      "useTLS": false,
+      "username": "bourne1agent@example.com",
+      "responsive": true,
+      "Password": "LITE-4Kbv9qUDmqVpoYZENwBw1g==",
+      "sharedKey": "VdBN7zlt3EDJra6gdypwboDixlD6V9adtkuN2iR2i5I=",
+      "IV": "ebkGSpvq7y86eWGT8e2vHw==",
+      "maxAttempts": 10,
+      "retryDelayMinutes": 10,
+      "inout": "both",
+      "pushPull": "push"
+    },
+    {
+      "name": "dcmtk",
+      "enabled": true,
+      "connType": "dcmtk",
+      "remoteHostname": "localhost",
+      "remotePort": 11120,
+      "localAETitle": "LITEDCMTK",
+      "remoteAETitle": "DCMTK",
+      "localPort": 11116,
+      "ServicePoint": "localhost",
+      "stores": {},
+      "X509StoreName": 0,
+      "X509StoreLocation": 0,
+      "EnforceServerCertificate": false,
+      "ResponseCacheExpiryMinutes": 60,
+      "requestResponseEnabled": true,
+      "UseIPV4": true,
+      "UseIPV6": true,
+      "sendIntermediateResults": false,
+      "isPrimary": false,
+      "storescpCfgFile": "./Profiles/storescp.cfg",
+      "useTLS": false,
+      "responsive": true,
+      "maxAttempts": 10,
+      "retryDelayMinutes": 10,
+      "inout": "both",
+      "pushPull": "push"
+    }
+  ],
+  "highWaitDelay": 60000,
+  "kickoffInterval": 58000,
+  "logger": {
+    "ConsoleTraceLevel": "Warning",
+    "FileTraceLevel": "Verbose",
+    "SplunkTraceLevel": "Info",
+    "TracePattern": null
+  },
+  "logRetentionDays": 1,
+  "name": "HL7SmartRouting",
+  "rules": {
+    "destRules": [
+      {
+        "name": "HL71 to bourne1-bourne3pc",
+        "enabled": true,
+        "fromConnectionName": "HL71",
+        "toConnections": [
+          {
+            "connectionName": "bourne1",
+            "shareDestinations": [
+              {
+                "boxId": "104",
+                "groupId": "127",
+                "groupName": "bourne3pc",
+                "publishableBoxType": "CONNECTION",
+                "organizationName": "bourne3",
+                "boxName": "bourne3pc",
+                "boxUuid": "19db62ba-128d-412c-8c4f-df28351e8ae0"
+              }
+            ]
+          }
+        ],
+        "ruleTags": [
+          {
+            "tag": "MSH,23",
+            "tagName": "Receiving Responsible Organization",
+            "tagValue": "\\0*",
+            "scriptName": null
+          }
+        ],
+        "Type": 0,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "HL71 to bourne1-bourne2pc",
+        "enabled": true,
+        "fromConnectionName": "HL71",
+        "toConnections": [
+          {
+            "connectionName": "bourne1",
+            "shareDestinations": [
+              {
+                "boxId": "103",
+                "groupId": "124",
+                "groupName": "gbourne2pcUniversity of Iowa Hospital & Clinicss",
+                "publishableBoxType": "CONNECTION",
+                "organizationName": "bourne2",
+                "boxName": "bourne2pc",
+                "boxUuid": "ad0fb00b-a619-4e83-a216-dfc0bb02a355"
+              }
+            ]
+          }
+        ],
+        "ruleTags": [
+          {
+            "tag": "MSH,23",
+            "tagName": "Receiving Responsible Organization",
+            "tagValue": "\\0*",
+            "scriptName": null
+          }
+        ],
+        "Type": 0,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      }
+    ],
+    "scripts": [
+      {
+        "name": "Hello World",
+        "source": "using Dicom;\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"Hello World\");",
+        "imports": [
+          "System"
+        ],
+        "references": [
+          "System.Object"
+        ],
+        "errors": "No Errors.  Last executed at 2019-02-11 13:49:43.4520"
+      }
+    ]
+  },
+  "run": [],
+  "tempPath": "/tmp/lifeimage/tmp",
+  "tempFileRetentionHours": 1,
+  "version": 708,
+  "dcmtkLibPath": null,
+  "lastKickOff": "2019-03-18T16:30:47.613548-04:00",
+  "lastStartup": "2019-03-18T16:03:54.593913-04:00",
+  "maxTaskDuration": "01:00:00",
+  "mediumWaitDelay": 30000,
+  "minFreeDiskBytes": 209715200,
+  "recoveryInterval": 10000,
+  "runningCodeVersion": "2.2.122",
+  "startupParams": {
+    "localProfilePath": "Profiles/Stephen.json",
+    "saveProfilePath": "Profiles/Stephen.json",
+    "getServerProfile": true,
+    "putServerProfile": true,
+    "generateSchema": false,
+    "validateProfile": true
+  },
+  "taskDelay": 1000,
+  "updateUrl": "http://dev-re.lifeimage.lan/secure/builds",
+  "updatePassword": {
+    "Field": "LITE-TGD7oiiV2aLFy7PNVoErzw==",
+    "sharedKey": "aFfKiuDt9V5ppT/Du2IYahjkBYSE+rSUvxlc8adotm8=",
+    "IV": "tVKebfD2xud9Qb1SZ0L7eA=="
+  },
+  "updateUsername": "liadmin",
+  "useSocketsHttpHandler": true
+}

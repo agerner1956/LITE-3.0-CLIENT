@@ -1,0 +1,107 @@
+{
+  "availableCodeVersions": null,
+  "activationTime": "0001-01-01T00:00:00",
+  "backlogDetection": true,
+  "backlogInterval": 5000,
+  "connections": [
+    {
+      "name": "liCloud",
+      "enabled": true,
+      "connType": "cloud",
+      "remotePort": 0,
+      "localPort": 0,
+      "Boxes": [
+        {
+          "boxId": null,
+          "groupId": null,
+          "groupName": null,
+          "publishableBoxType": null,
+          "organizationName": null,
+          "boxName": "LITESample",
+          "boxUuid": "19db62ba-128d-412c-8c4f-df28351e8ae0"
+        }
+      ],
+      "URL": "https://cloud-lila.lifeimage.com/universal-inbox",
+      "httpRequestTimeout": "00:30:00",
+      "ServicePoint": "localhost",
+      "stores": {},
+      "X509StoreName": 5,
+      "X509StoreLocation": 1,
+      "EnforceServerCertificate": false,
+      "ResponseCacheExpiryMinutes": 60,
+      "requestResponseEnabled": true,
+      "UseIPV4": true,
+      "UseIPV6": false,
+      "sendIntermediateResults": false,
+      "TestConnection": false,
+      "isPrimary": true,
+      "CalcCompressionStats": false,
+      "maxStudyDownloadTasks": 5,
+      "maxHL7UploadTasks": 1,
+      "maxPostResponseTasks": 1,
+      "maxWadoTasks": 5,
+      "maxStowTasks": 5,
+      "minStowBatchSize": 10240000,
+      "MaxRequestAgeMinutes": 30,
+      "StudyCloseInterval": 5,
+      "maxConnectionsPerServer": 10,
+      "useTLS": false,
+      "responsive": true,
+      "maxAttempts": 10,
+      "retryDelayMinutes": 10,
+      "inout": "both",
+      "PushPull": "push"
+    }
+  ],
+  "errors": [],
+  "highWaitDelay": 60000,
+  "KickOffInterval": 58000,
+  "logger": {
+    "ConsoleTraceLevel": "Warning",
+    "FileTraceLevel": "Info",
+    "SplunkTraceLevel": "Info",
+    "TracePattern": null
+  },
+  "logRetentionDays": 15,
+  "LogFileSize": 10240000,
+  "name": "LITE default profile",
+  "rules": {
+    "destRules": [],
+    "scripts": [
+      {
+        "name": "Hello World",
+        "source": "using System.Diagnostics; if (logger.logLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"Hello World\");",
+        "imports": [
+          ""
+        ],
+        "references": [
+          "System.Object"
+        ],
+        "errors": null
+      }
+    ]
+  },
+  "run": [],
+  "tempPath": "/Users/sbuck/lifeimage/lifeimage-agent/LITE/tmp/tempPath",
+  "tempFileRetentionHours": 4,
+  "version": 0,
+  "dcmtkLibPath": null,
+  "lastKickOff": "0001-01-01T00:00:00",
+  "lastStartup": "2019-05-21T15:10:51.197872-04:00",
+  "maxTaskDuration": "01:00:00",
+  "mediumWaitDelay": 30000,
+  "minFreeDiskBytes": 209715200,
+  "recoveryInterval": 10000,
+  "runningCodeVersion": "2.3.32",
+  "startupParams": {
+    "localProfilePath": "Profiles/DefaultProfile.json",
+    "saveProfilePath": "Profiles/DefaultProfile.json",
+    "getServerProfile": true,
+    "putServerProfile": true,
+    "generateSchema": false,
+    "validateProfile": true
+  },
+  "taskDelay": 1000,
+  "updatePassword": {},
+  "useSocketsHttpHandler": true
+}

@@ -1,0 +1,397 @@
+{
+  "name": "dcmtk Sample",
+  "connections": [
+    {
+      "name": "DCMRECV",
+      "enabled": true,
+      "connType": "dicom",
+      "remoteHostname": "Stephens-MacBook-Pro.local",
+      "remotePort": 11112,
+      "localAETitle": "LITEDCMRECV",
+      "remoteAETitle": "DCMRECV",
+      "localHostname": "Stephens-MacBook-Pro.local",
+      "localPort": 11113,
+      "useTLS": false,
+      "currentRequests": 0,
+      "sharedKey": "suqpy/JFp7WSYm5Ij0P4FqpVAofCTh3Zj8ELuDhkXjw=",
+      "IV": "ort0hcZC0NOtUoPlUQuVpQ==",
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 10,
+      "bufferSize": 4096,
+      "inout": "inbound"
+    },
+    {
+      "name": "DCMSEND",
+      "enabled": true,
+      "connType": "dicom",
+      "remoteHostname": "Stephens-MacBook-Pro.local",
+      "remotePort": 11114,
+      "localAETitle": "LITEDCMSEND",
+      "remoteAETitle": "DCMSEND",
+      "localHostname": "Stephens-MacBook-Pro.local",
+      "localPort": 11115,
+      "useTLS": false,
+      "currentRequests": 0,
+      "sharedKey": "suqpy/JFp7WSYm5Ij0P4FqpVAofCTh3Zj8ELuDhkXjw=",
+      "IV": "ort0hcZC0NOtUoPlUQuVpQ==",
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 10,
+      "bufferSize": 4096,
+      "inout": "inbound"
+    },
+    {
+      "name": "TmpFolder",
+      "enabled": true,
+      "connType": "file",
+      "remotePort": 0,
+      "inpath": "/tmp/lifeimage/tmpfolder",
+      "sharedKey": "suqpy/JFp7WSYm5Ij0P4FqpVAofCTh3Zj8ELuDhkXjw=",
+      "IV": "ort0hcZC0NOtUoPlUQuVpQ==",
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 10,
+      "bufferSize": 4096,
+      "inout": "inbound"
+    },
+    {
+      "name": "TmpFolder2",
+      "enabled": true,
+      "connType": "file",
+      "remotePort": 0,
+      "inpath": "/tmp/lifeimage/tmpfolder2",
+      "sharedKey": "suqpy/JFp7WSYm5Ij0P4FqpVAofCTh3Zj8ELuDhkXjw=",
+      "IV": "ort0hcZC0NOtUoPlUQuVpQ==",
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 10,
+      "bufferSize": 4096,
+      "inout": "inbound"
+    },
+    {
+      "name": "bourne1",
+      "enabled": true,
+      "connType": "cloud",
+      "remotePort": 0,
+      "shareDestinations": [
+        {
+          "boxId": "103",
+          "groupId": "124",
+          "groupName": "bourne2pc",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bourne2",
+          "boxName": "bourne2pc",
+          "boxUuid": "ad0fb00b-a619-4e83-a216-dfc0bb02a355"
+        },
+        {
+          "boxId": "104",
+          "groupId": "127",
+          "groupName": "bourne3pc",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bourne3",
+          "boxName": "bourne3pc",
+          "boxUuid": "19db62ba-128d-412c-8c4f-df28351e8ae0"
+        },
+        {
+          "boxId": "102",
+          "groupId": "122",
+          "groupName": "bournedest",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bournedest",
+          "boxName": "bournedest",
+          "boxUuid": "b9d29d6d-e46f-4242-96e1-3f15f3c8e184"
+        }
+      ],
+      "markDownloadsComplete": [],
+      "markSeriesComplete": [],
+      "studies": {
+        "ImagingStudy": []
+      },
+      "isPrimary": true,
+      "URL": "http://cloud-pr-dev1.lifeimage.lan:8080/universal-inbox",
+      "organizationCode": "bourne1",
+      "maxStudyDownloadTasks": 1,
+      "maxWadoTasks": 1,
+      "maxStowTasks": 1,
+      "serviceName": "bourne1pc",
+      "subscriptionCode": "8faaf720-b748-4da6-b782-bbb720edeb81",
+      "tenantID": "02c99a42-e427-4b7b-a5b0-da8081289530",
+      "scanpaths": [],
+      "studySeriesSOPUids": [],
+      "username": "bourne1agent@example.com",
+      "Password": "B7CUmEc8RvGOQ+I2qCWDrQ==",
+      "sharedKey": "suqpy/JFp7WSYm5Ij0P4FqpVAofCTh3Zj8ELuDhkXjw=",
+      "IV": "ort0hcZC0NOtUoPlUQuVpQ==",
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 60,
+      "bufferSize": 4096,
+      "inout": "both"
+    },
+    {
+      "name": "bourne2",
+      "enabled": true,
+      "connType": "cloud",
+      "remotePort": 0,
+      "shareDestinations": [
+        {
+          "boxId": "101",
+          "groupId": "119",
+          "groupName": "bourne1pc",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bourne1",
+          "boxName": "bourne1pc",
+          "boxUuid": "bce733c0-f044-425c-b43f-409e924c4300"
+        },
+        {
+          "boxId": "104",
+          "groupId": "127",
+          "groupName": "bourne3pc",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bourne3",
+          "boxName": "bourne3pc",
+          "boxUuid": "19db62ba-128d-412c-8c4f-df28351e8ae0"
+        },
+        {
+          "boxId": "102",
+          "groupId": "122",
+          "groupName": "bournedest",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bournedest",
+          "boxName": "bournedest",
+          "boxUuid": "b9d29d6d-e46f-4242-96e1-3f15f3c8e184"
+        }
+      ],
+      "markDownloadsComplete": [],
+      "markSeriesComplete": [],
+      "studies": {
+        "ImagingStudy": []
+      },
+      "isPrimary": false,
+      "URL": "http://cloud-pr-dev1.lifeimage.lan:8080/universal-inbox",
+      "organizationCode": "bourne2",
+      "maxStudyDownloadTasks": 1,
+      "maxWadoTasks": 1,
+      "maxStowTasks": 1,
+      "serviceName": "bourne2pc",
+      "subscriptionCode": "57a659cb-750d-44cd-877b-eb77ab099898",
+      "tenantID": "0507ff5a-b372-473c-b151-324e6113d0af",
+      "scanpaths": [],
+      "studySeriesSOPUids": [],
+      "username": "bourne2agent@example.com",
+      "Password": "Y/ZPhyIUJKXaA94Mf5KsCQ==",
+      "sharedKey": "TbT3icwF25bJJRB5oxzwUedRD6uLdA+37wzrNfBfbRE=",
+      "IV": "XrfeJFbhbvPaZnZVTcmbkA==",
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 60,
+      "bufferSize": 4096,
+      "inout": "both"
+    },
+    {
+      "name": "bourne3",
+      "enabled": true,
+      "connType": "cloud",
+      "remotePort": 0,
+      "shareDestinations": [
+        {
+          "boxId": "101",
+          "groupId": "119",
+          "groupName": "bourne1pc",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bourne1",
+          "boxName": "bourne1pc",
+          "boxUuid": "bce733c0-f044-425c-b43f-409e924c4300"
+        },
+        {
+          "boxId": "103",
+          "groupId": "124",
+          "groupName": "bourne2pc",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bourne2",
+          "boxName": "bourne2pc",
+          "boxUuid": "ad0fb00b-a619-4e83-a216-dfc0bb02a355"
+        },
+        {
+          "boxId": "102",
+          "groupId": "122",
+          "groupName": "bournedest",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bournedest",
+          "boxName": "bournedest",
+          "boxUuid": "b9d29d6d-e46f-4242-96e1-3f15f3c8e184"
+        }
+      ],
+      "markDownloadsComplete": [],
+      "markSeriesComplete": [],
+      "studies": {
+        "ImagingStudy": []
+      },
+      "isPrimary": false,
+      "URL": "http://cloud-pr-dev1.lifeimage.lan:8080/universal-inbox",
+      "organizationCode": "bourne3",
+      "maxStudyDownloadTasks": 5,
+      "maxWadoTasks": 5,
+      "maxStowTasks": 5,
+      "serviceName": "bourne3pc",
+      "subscriptionCode": "6f88c530-407c-438a-befe-c9fa34ae1a10",
+      "tenantID": "0a282254-779b-4bb3-afd6-d0bf3a35cd53",
+      "scanpaths": [],
+      "studySeriesSOPUids": [],
+      "username": "bourne3agent@example.com",
+      "Password": "Y/ZPhyIUJKXaA94Mf5KsCQ==",
+      "sharedKey": "TbT3icwF25bJJRB5oxzwUedRD6uLdA+37wzrNfBfbRE=",
+      "IV": "XrfeJFbhbvPaZnZVTcmbkA==",
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 60,
+      "bufferSize": 4096,
+      "inout": "both"
+    }
+  ],
+  "rules": {
+    "destRules": [
+      {
+        "name": "hl7in",
+        "enabled": true,
+        "fromConnectionName": "hl7in",
+        "toConnections": [
+          {
+            "connectionName": "bourne1",
+            "shareDestinations": null
+          }
+        ],
+        "ruleTags": [],
+        "modality": null,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "DCMSENDTobourne1",
+        "enabled": true,
+        "fromConnectionName": "DCMSEND",
+        "toConnections": [
+          {
+            "connectionName": "bourne1",
+            "shareDestinations": null
+          }
+        ],
+        "ruleTags": [],
+        "modality": null,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "bourne1toDCMRECV",
+        "enabled": true,
+        "fromConnectionName": "bourne1",
+        "toConnections": [
+          {
+            "connectionName": "DCMRECV",
+            "shareDestinations": null
+          }
+        ],
+        "ruleTags": [],
+        "modality": null,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "bourne2toTmpFolder",
+        "enabled": true,
+        "fromConnectionName": "bourne2",
+        "toConnections": [
+          {
+            "connectionName": "TmpFolder",
+            "shareDestinations": null
+          }
+        ],
+        "ruleTags": [],
+        "modality": null,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "DCMSENDtobourne2",
+        "enabled": true,
+        "fromConnectionName": "DCMSEND",
+        "toConnections": [
+          {
+            "connectionName": "bourne2",
+            "shareDestinations": null
+          }
+        ],
+        "ruleTags": [],
+        "modality": null,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "bourne3toDCMRECV",
+        "enabled": true,
+        "fromConnectionName": "bourne3",
+        "toConnections": [
+          {
+            "connectionName": "DCMRECV",
+            "shareDestinations": null
+          }
+        ],
+        "ruleTags": [],
+        "modality": null,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "DCMSENDtobourne3",
+        "enabled": true,
+        "fromConnectionName": "DCMSEND",
+        "toConnections": [
+          {
+            "connectionName": "bourne3",
+            "shareDestinations": null
+          }
+        ],
+        "ruleTags": [],
+        "modality": null,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      }
+    ],
+    "scripts": []
+  },
+  "logRetentionDays": 1,
+  "version": 300,
+  "highWait": false,
+  "highWaitDelay": 60000,
+  "mediumWait": false,
+  "mediumWaitDelay": 30000,
+  "enabled": true,
+  "activationTime": "0001-01-01T00:00:00",
+  "errors": [],
+  "tempPath": "/tmp/lifeimage",
+  "run": [],
+  "recoveryInterval": 120000,
+  "lastStartup": "2017-12-05T10:14:33.096512-05:00",
+  "lastKickOff": "2017-12-05T10:14:34.92021-05:00",
+  "runningCodeVersion": "1.0.50.0",
+  "startupParams": {
+    "getServerProfile": true,
+    "putServerProfile": true,
+    "generateSchema": false,
+    "validateProfile": true
+  },
+  "logger": {
+    "ConsoleTraceLevel": "Warning",
+    "FileTraceLevel": "Verbose",
+    "SplunkTraceLevel": "Info",
+    "TracePattern": null
+  }
+}

@@ -1,0 +1,332 @@
+{
+  "availableCodeVersions": null,
+  "activationTime": "0001-01-01T00:00:00",
+  "backlogDetection": true,
+  "backlogInterval": 5000,
+  "duplicatesDetectionUpload": false,
+  "duplicatesDetectionDownload": false,
+  "duplicatesDetectionInterval": 600,
+  "modalityDetectionArchivePeriod": 10,
+  "modalityList": [],
+  "connectionEvaluation": true,
+  "connections": [
+    {
+      "name": "liCloud",
+      "enabled": true,
+      "connType": "cloud",
+      "remotePort": 0,
+      "localPort": 0,
+      "shareDestinations": [
+        {
+          "boxId": "9325",
+          "groupId": "14348",
+          "groupName": "bqa4grp",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bqa4",
+          "boxName": "bqa4pc",
+          "boxUuid": "bbd09de8-3de1-4e00-9e45-724011b71999"
+        },
+        {
+          "boxId": "9390",
+          "groupId": "14579",
+          "groupName": "bqa5grp",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bqa5",
+          "boxName": "bqa5pc",
+          "boxUuid": "4647cd85-8305-4bc5-a731-fc932ed8c1f4"
+        },
+        {
+          "boxId": "9402",
+          "groupId": "14636",
+          "groupName": "bqa9grp",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bqa9",
+          "boxName": "bqa9pc",
+          "boxUuid": "7b51ccf4-e0c0-4575-bd5c-2ce23c4536a9"
+        },
+        {
+          "boxId": "11308",
+          "groupId": "17781",
+          "groupName": "LinuxPC",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "LinuxRC5",
+          "boxName": "LinuxPC",
+          "boxUuid": "7f21dd25-1d80-4c8d-b4fd-430886032945"
+        },
+        {
+          "boxId": "9094",
+          "groupId": "14062",
+          "groupName": "qalila12 PC",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "qalila12",
+          "boxName": "qalila12 Purecloud",
+          "boxUuid": "b6c1353b-f173-4ce2-ba45-47fd74babc44"
+        }
+      ],
+      "Boxes": [
+        {
+          "boxId": null,
+          "groupId": null,
+          "groupName": null,
+          "publishableBoxType": null,
+          "organizationName": null,
+          "boxName": "LITESample",
+          "boxUuid": "19db62ba-128d-412c-8c4f-df28351e8ae0"
+        }
+      ],
+      "URL": "https://mt.lifeimage.com/universal-inbox",
+      "httpRequestTimeout": "00:30:00",
+      "ServicePoint": "localhost",
+      "stores": {},
+      "X509StoreName": 5,
+      "X509StoreLocation": 1,
+      "EnforceServerCertificate": false,
+      "ResponseCacheExpiryMinutes": 60,
+      "requestResponseEnabled": true,
+      "UseIPV4": true,
+      "UseIPV6": false,
+      "sendIntermediateResults": false,
+      "TestConnection": false,
+      "isPrimary": true,
+      "CalcCompressionStats": false,
+      "maxStudyDownloadTasks": 5,
+      "maxHL7UploadTasks": 1,
+      "maxPostResponseTasks": 1,
+      "maxWadoTasks": 5,
+      "maxStowTasks": 5,
+      "organizationCode": "bqa6",
+      "serviceName": "bqa6pc",
+      "subscriptionCode": "ec1b38a4-5ff9-46ca-9875-7dffdb78e8b4",
+      "tenantID": "6f778c81-fb87-40e9-b264-b5091bb64caa",
+      "minStowBatchSize": 10240000,
+      "MaxRequestAgeMinutes": 30,
+      "StudyCloseInterval": 5,
+      "maxConnectionsPerServer": 10,
+      "useTLS": false,
+      "username": "donotreply+bqa6agent20201014124834@lifeimage.com",
+      "responsive": true,
+      "Password": "LITE-xt2ZTZIk1lYKhF3nDMawMA==",
+      "sharedKey": "CqvavsJg0bXTPRMYQZRu53GUfl/ZReikiL9AqbmAR2g=",
+      "IV": "H+aW7PURSkvu3VAT8Vrz/g==",
+      "maxAttempts": 10,
+      "retryDelayMinutes": 10,
+      "inout": "both",
+      "PushPull": "push"
+    },
+    {
+      "name": "hl7in",
+      "enabled": true,
+      "connType": "hl7",
+      "remoteHostname": "",
+      //"localHostname": "qa-win2012.lifeimage.lan",
+      "localHostname": "127.0.0.1",
+      "remotePort": 0,
+      "localPort": 2800,
+      "receiveBufferSize": 0,
+      "exclusiveAddressUse": false,
+      "linger": false,
+      "lingerms": 0,
+      "noDelay": false,
+      "receiveTimeout": 0,
+      "sendBufferSize": 0,
+      "sendTimeout": 0,
+      "ackMode": "Custom",
+      "ack": "ACK",
+      "IdleTimeout": 500,
+      "maxHL7InboundTasks": 1,
+      "ServicePoint": "localhost",
+      "stores": {},
+      "X509StoreName": 5,
+      "X509StoreLocation": 1,
+      "EnforceServerCertificate": false,
+      "ResponseCacheExpiryMinutes": 60,
+      "requestResponseEnabled": true,
+      "UseIPV4": true,
+      "UseIPV6": false,
+      "sendIntermediateResults": false,
+      "TestConnection": false,
+      "isPrimary": false,
+      "maxInboundConnections": 30,
+      "useTLS": false,
+      "responsive": true,
+      "maxAttempts": 10,
+      "retryDelayMinutes": 10,
+      "inout": "inbound",
+      "PushPull": "push"
+    },
+    {
+      "name": "dcmtkConnector",
+      "enabled": true,
+      "connType": "dcmtk",
+      "remoteHostname": "qa-win2012.lifeimage.lan",
+      "localHostname": "",
+      "remotePort": 1046,
+      "localAETitle": "litedcmtk138",
+      "remoteAETitle": "QA-WIN2012",
+      "localPort": 11115,
+      "ServicePoint": "localhost",
+      "stores": {},
+      "X509StoreName": 5,
+      "X509StoreLocation": 1,
+      "EnforceServerCertificate": false,
+      "ResponseCacheExpiryMinutes": 60,
+      "requestResponseEnabled": true,
+      "UseIPV4": true,
+      "UseIPV6": false,
+      "sendIntermediateResults": false,
+      "TestConnection": false,
+      "isPrimary": false,
+      "ModalityList": null,
+      "storescpCfgFile": "C:\\ProgramData\\Life Image Transfer Exchange\\Profiles\\storescp.cfg",
+      "useTLS": false,
+      "responsive": true,
+      "maxAttempts": 10,
+      "retryDelayMinutes": 10,
+      "inout": "both",
+      "PushPull": "push"
+    }
+  ],
+  "errors": [],
+  "highWaitDelay": 60000,
+  "KickOffInterval": 58000,
+  "logger": {
+    "ConsoleTraceLevel": "Warning",
+    "FileTraceLevel": "Verbose",
+    "SplunkTraceLevel": "Info",
+    "TracePattern": null
+  },
+  "logRetentionDays": 15,
+  "LogFileSize": 10240000,
+  "name": "LITE default profile",
+  "Labels": {
+    "Key": {
+      "en-us": "Value"
+    }
+  },
+  "rules": {
+    "destRules": [
+      {
+        "name": "hl7ToCloud",
+        "enabled": true,
+        "fromConnectionName": "hl7in",
+        "toConnections": [
+          {
+            "connectionName": "liCloud",
+            "shareDestinations": [
+              {
+                "boxId": "9325",
+                "groupId": "14348",
+                "groupName": "bqa4grp",
+                "publishableBoxType": "CONNECTION",
+                "organizationName": "bqa4",
+                "boxName": "bqa4pc",
+                "boxUuid": "bbd09de8-3de1-4e00-9e45-724011b71999"
+              }
+            ]
+          }
+        ],
+        "ruleTags": [],
+        "Type": 0,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "DcmtkPACStoCloud",
+        "enabled": true,
+        "fromConnectionName": "dcmtkConnector",
+        "toConnections": [
+          {
+            "connectionName": "liCloud",
+            "shareDestinations": [
+              {
+                "boxId": "9325",
+                "groupId": "14348",
+                "groupName": "bqa4grp",
+                "publishableBoxType": "CONNECTION",
+                "organizationName": "bqa4",
+                "boxName": "bqa4pc",
+                "boxUuid": "bbd09de8-3de1-4e00-9e45-724011b71999"
+              },
+              {
+                "boxId": "9390",
+                "groupId": "14579",
+                "groupName": "bqa5grp",
+                "publishableBoxType": "CONNECTION",
+                "organizationName": "bqa5",
+                "boxName": "bqa5pc",
+                "boxUuid": "4647cd85-8305-4bc5-a731-fc932ed8c1f4"
+              }
+            ]
+          }
+        ],
+        "ruleTags": [],
+        "Type": 0,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "DcmtkCloudToPACS",
+        "enabled": true,
+        "fromConnectionName": "liCloud",
+        "toConnections": [
+          {
+            "connectionName": "dcmtkConnector",
+            "shareDestinations": []
+          }
+        ],
+        "ruleTags": [],
+        "Type": 0,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      }
+    ],
+    "scripts": [
+      {
+        "name": "Hello World",
+        "source": "using System.Diagnostics; if (logger.logLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"Hello World\");",
+        "imports": [
+          ""
+        ],
+        "references": [
+          "System.Object"
+        ],
+        "errors": null
+      }
+    ]
+  },
+  "run": [],
+  "tempPath": "C:\\ProgramData\\Life Image Transfer Exchange\\tmp",
+  "tempFileRetentionHours": 4,
+  "version": 4,
+  "dcmtkLibPath": "tools\\dcmtk\\dcmtk-3.6.3-win64-dynamic",
+  "lastKickOff": "2020-10-14T13:02:40.2959506-04:00",
+  "lastStartup": "2020-10-14T13:01:11.0739542-04:00",
+  "maxTaskDuration": "01:00:00",
+  "mediumWaitDelay": 30000,
+  "minFreeDiskBytes": 209715200,
+  "recoveryInterval": 10000,
+  "runningCodeVersion": "2.4.96-next-96",
+  "startupParams": {
+    "localProfilePath": "2.4.96_DefaultProfile_mt.json",
+    "saveProfilePath": "2.4.96_DefaultProfile_mt.json",
+    "getServerProfile": true,
+    "putServerProfile": true,
+    "generateSchema": false,
+    "validateProfile": true
+  },
+  "taskDelay": 1000,
+  "updatePassword": {
+    "Field": "LITE-TGD7oiiV2aLFy7PNVoErzw==",
+    "sharedKey": "aFfKiuDt9V5ppT/Du2IYahjkBYSE+rSUvxlc8adotm8=",
+    "IV": "tVKebfD2xud9Qb1SZ0L7eA=="
+  },
+  "updateUsername": "liadmin",
+  "UsePowershellUpgrade": false,
+  "useSocketsHttpHandler": true
+}

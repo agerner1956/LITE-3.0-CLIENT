@@ -1,0 +1,722 @@
+{
+  "name": "De-identification Sample",
+  "connections": [
+    {
+      "name": "hl7in",
+      "enabled": true,
+      "connType": "hl7",
+      "localHostname": "localhost",
+      "remotePort": 0,
+      "localPort": 2575,
+      "receiveBufferSize": 256000,
+      "exclusiveAddressUse": true,
+      "linger": false,
+      "lingerms": 10,
+      "noDelay": false,
+      "receiveTimeout": 0,
+      "sendBufferSize": 256000,
+      "sendTimeout": 0,
+      "ackMode": "Custom",
+      "maxHL7InboundTasks": 1,
+      "maxInboundConnections": 30,
+      "maxConnectionsPerServer": 10,
+      "bufferSize": 4096,
+      "inout": "inbound"
+    },
+    {
+      "name": "DCMRECV",
+      "enabled": true,
+      "connType": "dicom",
+      "remoteHostname": "Stephens-MacBook-Pro.local",
+      "localHostname": "Stephens-MacBook-Pro.local",
+      "remotePort": 11112,
+      "localAETitle": "LITEDCMRECV",
+      "remoteAETitle": "DCMRECV",
+      "localPort": 11113,
+      "useTLS": false,
+      "currentRequests": 0,
+      "dicomOperations": null,
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 10,
+      "bufferSize": 4096,
+      "inout": "outbound"
+    },
+    {
+      "name": "DCMSEND",
+      "enabled": true,
+      "connType": "dicom",
+      "remoteHostname": "Stephens-MacBook-Pro.local",
+      "localHostname": "Stephens-MacBook-Pro.local",
+      "remotePort": 11114,
+      "localAETitle": "LITEDCMSEND",
+      "remoteAETitle": "DCMSEND",
+      "localPort": 11115,
+      "useTLS": false,
+      "currentRequests": 0,
+      "dicomOperations": null,
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 10,
+      "bufferSize": 4096,
+      "inout": "inbound"
+    },
+    {
+      "name": "TmpFolder",
+      "enabled": true,
+      "connType": "file",
+      "remotePort": 0,
+      "localPort": 0,
+      "inpathRetentionHours": 72,
+      "outpathRetentionHours": 72,
+      "inpath": "/tmp/dcmFiles",
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 10,
+      "bufferSize": 4096,
+      "inout": "inbound"
+    },
+    {
+      "name": "TmpFolder2",
+      "enabled": true,
+      "connType": "file",
+      "remotePort": 0,
+      "localPort": 0,
+      "inpathRetentionHours": 72,
+      "outpathRetentionHours": 72,
+      "inpath": "/tmp/dcmFiles2",
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 10,
+      "bufferSize": 4096,
+      "inout": "inbound"
+    },
+    {
+      "name": "bourne1",
+      "enabled": true,
+      "connType": "cloud",
+      "remotePort": 0,
+      "localPort": 0,
+      "shareDestinations": [
+        {
+          "boxId": "104",
+          "groupId": "127",
+          "groupName": "bourne3pc",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bourne3",
+          "boxName": "bourne3pc",
+          "boxUuid": "19db62ba-128d-412c-8c4f-df28351e8ae0"
+        },
+        {
+          "boxId": "103",
+          "groupId": "124",
+          "groupName": "gbourne2pcUniversity of Iowa Hospital & Clinicss",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bourne2",
+          "boxName": "bourne2pc",
+          "boxUuid": "ad0fb00b-a619-4e83-a216-dfc0bb02a355"
+        }
+      ],
+      "markDownloadsComplete": [],
+      "markSeriesComplete": [],
+      "studies": {
+        "ImagingStudy": []
+      },
+      "isPrimary": true,
+      "URL": "http://cloud-pr-dev1.lifeimage.lan:8080/universal-inbox",
+      "loginNeeded": false,
+      "httpRequestTimeout": "00:30:00",
+      "organizationCode": "bourne1",
+      "maxStudyDownloadTasks": 5,
+      "maxWadoTasks": 5,
+      "maxStowTasks": 5,
+      "serviceName": "bourne1pc",
+      "subscriptionCode": "8faaf720-b748-4da6-b782-bbb720edeb81",
+      "tenantID": "02c99a42-e427-4b7b-a5b0-da8081289530",
+      "studySeriesSOPUids": [],
+      "username": "bourne1agent@example.com",
+      "Password": "LITE-7m5g85xKHTXhtfikleKKDA==",
+      "sharedKey": "KS8h7aZ4r0QdGLAlW2deahYYILW+4NegEWEAGvhnViI=",
+      "IV": "S0Q4IQXOeL9ugEXV2tZnQw==",
+      "maxInboundConnections": 3,
+      "maxConnectionsPerServer": 60,
+      "bufferSize": 4096,
+      "inout": "both"
+    }
+  ],
+  "rules": {
+    "destRules": [
+      {
+        "name": "hl7in",
+        "enabled": true,
+        "fromConnectionName": "hl7in",
+        "toConnections": [
+          {
+            "connectionName": "bourne1",
+            "shareDestinations": null
+          }
+        ],
+        "ruleTags": [],
+        "modality": null,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "DCMSENDTobourne1",
+        "enabled": true,
+        "fromConnectionName": "DCMSEND",
+        "toConnections": [
+          {
+            "connectionName": "bourne1",
+            "shareDestinations": null
+          }
+        ],
+        "ruleTags": [
+          {
+            "tag": "0008,0020",
+            "tagName": "StudyDate",
+            "tagValue": "\\0*",
+            "scriptName": "Minus1Month"
+          },
+          {
+            "tag": "0008,0021",
+            "tagName": "SeriesDate",
+            "tagValue": "\\0*",
+            "scriptName": "Minus1Month"
+          },
+          {
+            "tag": "0008,0022",
+            "tagName": "AcquisitionDate",
+            "tagValue": "\\0*",
+            "scriptName": "Minus1Month"
+          },
+          {
+            "tag": "0008,0023",
+            "tagName": "ContentDate",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,0024",
+            "tagName": "OverlayDate",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,0025",
+            "tagName": "CurveDate",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,002A",
+            "tagName": "AcquisitionDatetime",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,0030",
+            "tagName": "StudyTime",
+            "tagValue": "\\0*",
+            "scriptName": "Minus1Hour"
+          },
+          {
+            "tag": "0008,0031",
+            "tagName": "SeriesTime",
+            "tagValue": "\\0*",
+            "scriptName": "Minus1Hour"
+          },
+          {
+            "tag": "0008,0032",
+            "tagName": "AcquisitionTime",
+            "tagValue": "\\0*",
+            "scriptName": "Minus1Hour"
+          },
+          {
+            "tag": "0008,0033",
+            "tagName": "ContentTime",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,0034",
+            "tagName": "OverlayTime",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,0035",
+            "tagName": "CurveTime",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0010,0010",
+            "tagName": "PatientsName",
+            "tagValue": "\\0*",
+            "scriptName": "RandomizeString"
+          },
+          {
+            "tag": "0010,0020",
+            "tagName": "PatientID",
+            "tagValue": "\\0*",
+            "scriptName": "RandomizeString"
+          },
+          {
+            "tag": "0010,0021",
+            "tagName": "IssuerOfPatientID",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0010,0030",
+            "tagName": "PatientsBirthDate",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0010,0032",
+            "tagName": "PatientsBirthTime",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0010,0040",
+            "tagName": "PatientsSex",
+            "tagValue": "\\0*",
+            "scriptName": "Unisex"
+          },
+          {
+            "tag": "0010,1000",
+            "tagName": "OtherPatientIDs",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0010,1001",
+            "tagName": "OtherPatientNames",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0010,1005",
+            "tagName": "PatientsBirthName",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0010,1010",
+            "tagName": "PatientsAge",
+            "tagValue": "\\0*",
+            "scriptName": "AgeAtExam"
+          },
+          {
+            "tag": "0010,1040",
+            "tagName": "PatientsAddress",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0010,1060",
+            "tagName": "PatientsMothersBirthName",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0010,2150",
+            "tagName": "CountryOfResidence",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0010,2152",
+            "tagName": "RegionOfResidence",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0010,2154",
+            "tagName": "PatientsTelephoneNumbers",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0020,0010",
+            "tagName": "StudyID",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0038,0300",
+            "tagName": "CurrentPatientLocation",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0038,0400",
+            "tagName": "PatientsInstitutionResidence",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0040,A120",
+            "tagName": "DateTime",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0040,A121",
+            "tagName": "Date",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0040,A122",
+            "tagName": "Time",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0040,A123",
+            "tagName": "PersonName",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0012,0062",
+            "tagName": "PatientIdentityRemoved",
+            "tagValue": "\\0*",
+            "scriptName": "YES"
+          },
+          {
+            "tag": "0008,0050",
+            "tagName": "AccessionNumber",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,0080",
+            "tagName": "InstitutionName",
+            "tagValue": "\\0*",
+            "scriptName": "SiteNumber"
+          },
+          {
+            "tag": "0008,0081",
+            "tagName": "InstitutionAddress",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,0090",
+            "tagName": "ReferringPhysiciansName",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,0092",
+            "tagName": "ReferringPhysiciansAddress",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,0094",
+            "tagName": "ReferringPhysiciansTelephoneNumber",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,0096",
+            "tagName": "ReferringPhysicianIDSequence",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,1040",
+            "tagName": "InstitutionalDepartmentName",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,1048",
+            "tagName": "PhysicianOfRecord",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,1049",
+            "tagName": "PhysicianOfRecordIDSequence",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,1050",
+            "tagName": "PerformingPhysiciansName",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,1052",
+            "tagName": "PerformingPhysicianIDSequence",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,1060",
+            "tagName": "NameOfPhysicianReadingStudy",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,1062",
+            "tagName": "PhysicianReadingStudyIDSequence",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,1070",
+            "tagName": "OperatorsName",
+            "tagValue": "\\0*",
+            "scriptName": "RemoveTag"
+          },
+          {
+            "tag": "0008,0050",
+            "tagName": "AccessionNumber",
+            "tagValue": "\\0*",
+            "scriptName": "PrefixWithIM"
+          }
+        ],
+        "modality": null,
+        "preProcessFromConnectionScriptNames": [
+          "ruleTags",
+          "WhiteList"
+        ],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      }
+    ],
+    "scripts": [
+      {
+        "name": "AgeAtExam",
+        "source": "using Dicom;\nusing System;\nusing System.Diagnostics;\nusing System.Linq;\nusing Dicom;\nusing System.Globalization;\nvar scriptName=\"AgeAtExam\";\n AgeAtExam();",
+        "imports": [
+          "System",
+          "System.Linq, System.Core",
+          "Dicom.DicomTag, Dicom"
+        ],
+        "references": [
+          "System.Object",
+          "System.Linq.Enumerable, System.Core",
+          "Dicom.DicomTag, Dicom.Core"
+        ],
+        "errors": "No Errors.  Last executed at 2018-04-26 14:56:11.8609"
+      },
+      {
+        "name": "Minus1Month",
+        "source": "using LifeImageLite; using Dicom;\nusing System;\nusing System.Diagnostics;\nusing System.Linq;\nusing Dicom;\nusing System.Globalization;\nvar scriptName=\"Minus1Month\";\n if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{ruleDicomTag.tag}{ruleDicomTag.tagValue}\");\nCultureInfo culture;\nDateTimeStyles styles;\nDateTime date;\nDicomTag dtTag = Dicom.DicomTag.Parse(ruleDicomTag.tag);\nif(sourceDicomFile.Dataset.Contains(dtTag)) {string tagValue = sourceDicomFile.Dataset.Get<string>(dtTag);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{tagValue}\");\nculture = CultureInfo.CreateSpecificCulture(\"en-US\");\nstyles = DateTimeStyles.AssumeLocal;\ndate = DateTime.ParseExact(tagValue,\"yyyyMMdd\",culture, styles);\n  if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: Before {date}\");\n date = date.AddMonths(-1);\n if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: After {date}\");\nsourceDicomFile.Dataset.AddOrUpdate<string>(dtTag,date.ToString(\"yyyyMMdd\"));\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} {sourceDicomFile.Dataset.Get<string>(dtTag)} newValue: {date.ToString(\"yyyyMMdd\")}\");\n} else {if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: Required tags not present to perform this script!\");}\n",
+        "imports": [
+          "System",
+          "System.Linq, System.Core",
+          "Dicom.DicomTag, Dicom.Core",
+          "LifeImageLite.Logger, LITE"
+        ],
+        "references": [
+          "System.Object",
+          "System.Linq.Enumerable, System.Core",
+          "Dicom.DicomTag, Dicom.Core",
+          "LifeImageLite.Logger, LITE"
+        ],
+        "errors": "No Errors.  Last executed at 2018-04-26 14:56:11.4970"
+      },
+      {
+        "name": "Minus1Hour",
+        "source": "using Dicom;\nusing System;\nusing System.Diagnostics;\nusing System.Linq;\nusing Dicom;\nusing System.Globalization;\nvar scriptName=\"Minus1Hour\";\n if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{ruleDicomTag.tag}{ruleDicomTag.tagValue}\");\nCultureInfo culture;\nDateTimeStyles styles;\nDateTime date;\nDicomTag dtTag = Dicom.DicomTag.Parse(ruleDicomTag.tag);\nif(sourceDicomFile.Dataset.Contains(dtTag))\n{string tagValue = sourceDicomFile.Dataset.Get<string>(dtTag);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{tagValue}\");\nculture = CultureInfo.CreateSpecificCulture(\"en-US\");\nstyles = DateTimeStyles.AssumeLocal;\ndate = DateTime.ParseExact(tagValue,\"HHmmss.FFFFFF\",culture, styles);\n  if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: Before {date}\");\n date = date.AddHours(-1);\n if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: After {date}\");\nsourceDicomFile.Dataset.AddOrUpdate<string>(dtTag,date.ToString(\"HHmmss.FFFFFF\"));\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} {sourceDicomFile.Dataset.Get<string>(dtTag)} newValue: {date.ToString(\"HHmmss.FFFFFF\")}\");\n} else {if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: Required tags not present to perform this script!\");}\n",
+        "imports": [
+          "System",
+          "System.Linq, System.Core",
+          "Dicom.DicomTag, Dicom"
+        ],
+        "references": [
+          "System.Object",
+          "System.Linq.Enumerable, System.Core",
+          "Dicom.DicomTag, Dicom.Core"
+        ],
+        "errors": "No Errors.  Last executed at 2018-04-26 14:56:11.6241"
+      },
+      {
+        "name": "PrefixWithIM",
+        "source": "using Dicom;\nusing System;\nusing System.Diagnostics;\nusing System.Linq;\nusing Dicom;\nusing System.Globalization;\nvar scriptName=\"PrefixWithIM\";\n if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{ruleDicomTag.tag}{ruleDicomTag.tagValue}\");\nDicomTag dtTag = Dicom.DicomTag.Parse(ruleDicomTag.tag);\nif(sourceDicomFile.Dataset.Contains(dtTag))\n{string tagValue = null;\nsourceDicomFile.Dataset.TryGetValue<string>(dtTag, 0, out tagValue);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{tagValue}\");\n  if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: Before {tagValue}\");\n tagValue = \"IM\" + tagValue;\n if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: After {tagValue}\");\nsourceDicomFile.Dataset.AddOrUpdate<string>(dtTag,tagValue);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} {sourceDicomFile.Dataset.Get<string>(dtTag)} newValue: {tagValue}\");\n} else {if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: Required tags not present to perform this script!\");}\n",
+        "imports": [
+          "System",
+          "System.Linq, System.Core",
+          "Dicom.DicomTag, Dicom"
+        ],
+        "references": [
+          "System.Object",
+          "System.Linq.Enumerable, System.Core",
+          "Dicom.DicomTag, Dicom.Core"
+        ],
+        "errors": "No Errors.  Last executed at 2018-04-26 14:56:11.6241"
+      },
+      {
+        "name": "RemoveTag",
+        "source": "using Dicom;\nusing System;\nusing System.Diagnostics;\nusing System.Linq;\nusing Dicom;\nusing System.Globalization;\nvar scriptName=\"RemoveTag\";\n if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{ruleDicomTag.tag}{ruleDicomTag.tagValue}\");\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: removing {ruleDicomTag.tag}\");\nDicomTag dtTag = Dicom.DicomTag.Parse(ruleDicomTag.tag);\nsourceDicomFile.Dataset.Remove(dtTag);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} Removed.\");\n",
+        "imports": [
+          "System",
+          "System.Linq, System.Core",
+          "Dicom.DicomTag, Dicom"
+        ],
+        "references": [
+          "System.Object",
+          "System.Linq.Enumerable, System.Core",
+          "Dicom.DicomTag, Dicom.Core"
+        ],
+        "errors": "No Errors.  Last executed at 2018-04-26 14:56:12.3890"
+      },
+      {
+        "name": "LI-GENERATEDNUMBER",
+        "source": "using Dicom;\nusing System;\nusing System.Diagnostics;\nusing System.Linq;\nusing Dicom;\nvar scriptName=\"LI-GENERATEDNUMBER\";\n}DicomTag dtTag = Dicom.DicomTag.Parse(ruleDicomTag.tag);\nif(sourceDicomFile.Dataset.Contains(dtTag)){string tagValue = sourceDicomFile.Dataset.Get<string>(dtTag);\nstring newValue = RandomString(tagValue.Length);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} {tagValue} newValue: {newValue}\");\nsourceDicomFile.Dataset.AddOrUpdate<string>(dtTag,newValue);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} {sourceDicomFile.Dataset.Get<string>(dtTag)} newValue: {newValue}\");\n}",
+        "imports": [
+          "System",
+          "System.Linq, System",
+          "Dicom.DicomTag, Dicom"
+        ],
+        "references": [
+          "System.Object",
+          "System.Linq.Enumerable, System.Core",
+          "Dicom.DicomTag, Dicom.Core"
+        ],
+        "errors": "No Errors.  Last executed at 2017-12-04 16:42:46.8025"
+      },
+      {
+        "name": "Unisex",
+        "source": "using Dicom;\nusing System;\nusing System.Diagnostics;\nusing System.Linq;\nusing Dicom;\nvar scriptName=\"Unisex\";\nDicomTag dtTag = Dicom.DicomTag.Parse(ruleDicomTag.tag);\nif(sourceDicomFile.Dataset.Contains(dtTag)){string tagValue = sourceDicomFile.Dataset.Get<string>(dtTag);\nstring newValue = \"O\";\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} {tagValue} newValue: {newValue}\");\nsourceDicomFile.Dataset.AddOrUpdate<string>(dtTag,newValue);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} {sourceDicomFile.Dataset.Get<string>(dtTag)} newValue: {newValue}\");\n}",
+        "imports": [
+          "System",
+          "System.Linq, System",
+          "Dicom.DicomTag, Dicom"
+        ],
+        "references": [
+          "System.Object",
+          "System.Linq.Enumerable, System.Core",
+          "Dicom.DicomTag, Dicom.Core"
+        ],
+        "errors": "No Errors.  Last executed at 2018-04-26 14:56:11.7902"
+      },
+      {
+        "name": "RandomizeString",
+        "source": "using Dicom;\nusing System;\nusing System.Diagnostics;\nusing System.Linq;\nusing Dicom;\nvar scriptName=\"RandomizeString\";\nprivate static Random random = new Random();\npublic static string RandomString(int length){const string chars = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\";\nreturn new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());\n}DicomTag dtTag = Dicom.DicomTag.Parse(ruleDicomTag.tag);\nif(sourceDicomFile.Dataset.Contains(dtTag)){string tagValue = sourceDicomFile.Dataset.Get<string>(dtTag);\nstring newValue = RandomString(tagValue.Length);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} {tagValue} newValue: {newValue}\");\nsourceDicomFile.Dataset.AddOrUpdate<string>(dtTag,newValue);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} {sourceDicomFile.Dataset.Get<string>(dtTag)} newValue: {newValue}\");\n}",
+        "imports": [
+          "System",
+          "System.Linq, System",
+          "Dicom.DicomTag, Dicom"
+        ],
+        "references": [
+          "System.Object",
+          "System.Linq.Enumerable, System.Core",
+          "Dicom.DicomTag, Dicom.Core"
+        ],
+        "errors": "No Errors.  Last executed at 2018-04-26 14:56:11.7174"
+      },
+      {
+        "name": "YES",
+        "source": "using Dicom;\nusing System;\nusing System.Diagnostics;\nusing System.Linq;\nusing Dicom;\nvar scriptName=\"YES\";\nDicomTag dtTag = Dicom.DicomTag.Parse(ruleDicomTag.tag);\nstring newValue = \"YES\";\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} newValue: {newValue}\");\nsourceDicomFile.Dataset.AddOrUpdate<string>(dtTag,newValue);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} {sourceDicomFile.Dataset.Get<string>(dtTag)} newValue: {newValue}\");\n",
+        "imports": [
+          "System",
+          "System.Linq, System",
+          "Dicom.DicomTag, Dicom"
+        ],
+        "references": [
+          "System.Object",
+          "System.Linq.Enumerable, System.Core",
+          "Dicom.DicomTag, Dicom.Core"
+        ],
+        "errors": "No Errors.  Last executed at 2018-04-26 14:56:11.7902"
+      },
+      {
+        "name": "SiteNumber",
+        "source": "using Dicom;\nusing System;\nusing System.Diagnostics;\nusing System.Linq;\nusing Dicom;\nvar scriptName=\"YES\";\nDicomTag dtTag = Dicom.DicomTag.Parse(ruleDicomTag.tag);\nstring newValue = \"SiteNumberGoesHere\";\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} newValue: {newValue}\");\nsourceDicomFile.Dataset.AddOrUpdate<string>(dtTag,newValue);\nif (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: RuleTag: {ruleDicomTag.tag} {ruleDicomTag.tagValue} DicomTag: {dtTag.DictionaryEntry.Name} {sourceDicomFile.Dataset.Get<string>(dtTag)} newValue: {newValue}\");\n",
+        "imports": [
+          "System",
+          "System.Linq, System",
+          "Dicom.DicomTag, Dicom"
+        ],
+        "references": [
+          "System.Object",
+          "System.Linq.Enumerable, System.Core",
+          "Dicom.DicomTag, Dicom.Core"
+        ],
+        "errors": "No Errors.  Last executed at 2018-04-26 14:56:11.7902"
+      },
+      {
+        "name": "Hello World",
+        "source": "System.if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, \"Hello World!\");\n",
+        "imports": [
+          ""
+        ],
+        "references": [
+          "System.Object"
+        ],
+        "errors": null
+      },
+      {
+        "name": "WhiteList",
+        "source": "using Dicom;\nusing System;\nusing System.Diagnostics;\nusing System.Linq;\nusing Dicom;\nusing System.Globalization;\nvar scriptName=\"WhiteList\";\n if (logger.FileTraceLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"{scriptName}: Will remove all tags not specified in the rule\");\n RemoveUnspecifiedTags();\n",
+        "imports": [
+          "System",
+          "System.Linq, System.Core",
+          "Dicom.DicomTag, Dicom"
+        ],
+        "references": [
+          "System.Object",
+          "System.Linq.Enumerable, System.Core",
+          "Dicom.DicomTag, Dicom.Core"
+        ],
+        "errors": "No Errors.  Last executed at 2018-04-26 14:56:12.3890"
+      }
+    ]
+  },
+  "bigFileSize": 500000000,
+  "logRetentionDays": 1,
+  "tempFileRetentionHours": 1,
+  "version": 7,
+  "highWait": false,
+  "highWaitDelay": 60000,
+  "mediumWait": false,
+  "mediumWaitDelay": 30000,
+  "enabled": true,
+  "activationTime": "0001-01-01T00:00:00",
+  "errors": [],
+  "tempPath": "/tmp/lifeimage",
+  "minFreeDiskBytes": 209715200,
+  "excludedDrives": [
+    "/dev",
+    "/net",
+    "/home",
+    "/proc",
+    "/Volumes/Wireshark"
+  ],
+  "run": [],
+  "startupParams": {
+    "localProfilePath": "Profiles/De-identificationSample.json",
+    "saveProfilePath": "Profiles/De-identificationSample.json",
+    "getServerProfile": true,
+    "putServerProfile": true,
+    "generateSchema": false,
+    "validateProfile": true
+  },
+  "logger": {
+    "ConsoleTraceLevel": "Warning",
+    "FileTraceLevel": "Verbose",
+    "SplunkTraceLevel": "Info",
+    "TracePattern": null
+  },
+  "runningCodeVersion": "2.0.34",
+  "recoveryInterval": 120000,
+  "lastStartup": "2018-04-26T14:18:24.459699-04:00",
+  "lastKickOff": "2018-04-26T16:38:20.658884-04:00",
+  "updateUsername": "liadmin",
+  "updatePassword": {
+    "Field": "LITE-TGD7oiiV2aLFy7PNVoErzw==",
+    "sharedKey": "aFfKiuDt9V5ppT/Du2IYahjkBYSE+rSUvxlc8adotm8=",
+    "IV": "tVKebfD2xud9Qb1SZ0L7eA=="
+  }
+}
