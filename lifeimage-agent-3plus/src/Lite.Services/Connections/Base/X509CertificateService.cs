@@ -34,7 +34,7 @@ namespace Lite.Services.Connections
                 {
                     certs = store.Certificates.Find(X509FindType.FindByIssuerName, connectionName, false);
                 }
-                catch (System.ArgumentException)
+                catch (ArgumentException)
                 {
                     //create the self-signed cert
                     var cert = buildSelfSignedServerCertificate(ServicePoint);

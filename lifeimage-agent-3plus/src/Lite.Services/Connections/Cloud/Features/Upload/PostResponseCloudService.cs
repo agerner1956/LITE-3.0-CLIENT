@@ -69,7 +69,8 @@ namespace Lite.Services.Connections.Cloud.Features
 
                 _logger.Log(LogLevel.Debug, $"{taskInfo} posting {json}");
                 string base64Results = Convert.ToBase64String(Encoding.ASCII.GetBytes(json));
-                string agentTasksURL = Connection.URL + $"/api/agent/v1/agent-task-results/{routedItem.id}";
+                //string agentTasksURL = Connection.URL + $"/api/agent/v1/agent-task-results/{routedItem.id}";
+                string agentTasksURL = Connection.URL + CloudAgentConstants.GetAgentTaskResultUrl(routedItem.id);
 
                 //optional status="NEW", "PENDING", "COMPLETED", "FAILED"
                 agentTasksURL += $"?status={routedItem.status}";

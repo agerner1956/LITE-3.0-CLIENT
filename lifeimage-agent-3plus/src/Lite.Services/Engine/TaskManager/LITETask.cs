@@ -279,7 +279,7 @@ namespace Lite.Services
                 }
 
                 var profile = _profileStorage.Current;
-
+              
                 foreach (var conn in profile.connections)
                 {
                     //if (conn.connType == Connection.ConnectionType.hl7 && Profile.SkipProfileMergeHL7 == true) continue;
@@ -424,15 +424,11 @@ namespace Lite.Services
         public async Task UpdateStatus()
         {
             _logger.Log(LogLevel.Debug, $"Entering updateStatus");
-
-            Profile profile = null;
-
             try
             {
                 while (true)
                 {
-                    profile = _profileStorage.Current;
-
+                    Profile profile = _profileStorage.Current;
                     try
                     {
                         //Are there any short running tasks?  If so, switch fastStatus

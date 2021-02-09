@@ -49,7 +49,7 @@ namespace Lite.Services.Routing.RouteItemManager
 
             Item.lastAttempt = DateTime.MaxValue;
 
-            var dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + "ResponseCache" + Path.DirectorySeparatorChar + queueName + Path.DirectorySeparatorChar + "errors";
+            var dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + Constants.Dirs.ResponseCache + Path.DirectorySeparatorChar + queueName + Path.DirectorySeparatorChar + Constants.Dirs.Errors;
             Directory.CreateDirectory(dir);
             string metadir = dir + Path.DirectorySeparatorChar + Constants.Dirs.Meta;
             Directory.CreateDirectory(metadir);

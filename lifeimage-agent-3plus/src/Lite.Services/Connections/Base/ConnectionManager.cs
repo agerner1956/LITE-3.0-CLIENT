@@ -11,9 +11,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
@@ -112,12 +110,16 @@ namespace Lite.Services.Connections
                 List<string> fileEntries;
 
                 //read the persisted ResponseCache entries
-                dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + "ResponseCache" +
-                      Path.DirectorySeparatorChar + Constants.Dirs.Cache + Path.DirectorySeparatorChar + Constants.Dirs.Meta;
+                dir = _profileStorage.Current.tempPath + 
+                    Path.DirectorySeparatorChar + 
+                    Constants.Dirs.ResponseCache +
+                    Path.DirectorySeparatorChar + 
+                    Constants.Dirs.Cache + 
+                    Path.DirectorySeparatorChar + 
+                    Constants.Dirs.Meta;
 
                 Directory.CreateDirectory(dir);
                 fileEntries = _util.DirSearch(dir, Constants.Extensions.MetaExt.ToSearchPattern());
-
 
                 foreach (string file in fileEntries)
                 {
@@ -153,12 +155,10 @@ namespace Lite.Services.Connections
 
         public async Task SendToRules(int taskID, bool responsive = true)
         {
-            using (var scope = ServiceActivator.GetScope())
-            {
-                var adapter = scope.ServiceProvider.GetRequiredService<IConnectionToRulesManagerAdapter>();
-                var args = new ConnectionToRulesManagerAdapterArgs(Connection, toRules, cache, this);
-                await adapter.SendToRules(taskID, args, responsive);
-            }
+            using var scope = ServiceActivator.GetScope();
+            var adapter = scope.ServiceProvider.GetRequiredService<IConnectionToRulesManagerAdapter>();
+            var args = new ConnectionToRulesManagerAdapterArgs(Connection, toRules, cache, this);
+            await adapter.SendToRules(taskID, args, responsive);
         }
 
         protected virtual void ToRulesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -195,11 +195,9 @@ namespace Lite.Services.Connections
 
         public void RemoveCachedItem(RoutedItem routedItem)
         {
-            using (var scope = ServiceActivator.GetScope())
-            {
-                var cacheService = scope.ServiceProvider.GetRequiredService<IConnectionCacheResponseService>();
-                cacheService.RemoveCachedItem(Connection, routedItem, cache);
-            }
+            using var scope = ServiceActivator.GetScope();
+            var cacheService = scope.ServiceProvider.GetRequiredService<IConnectionCacheResponseService>();
+            cacheService.RemoveCachedItem(Connection, routedItem, cache);
         }
 
         public void Dispose()

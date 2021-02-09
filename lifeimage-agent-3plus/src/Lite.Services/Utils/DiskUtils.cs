@@ -156,7 +156,7 @@ namespace Lite.Core.Utils
             try
             {
                 DateTime now = DateTime.Now;
-                var errorFile = tempPath + Path.DirectorySeparatorChar + "errors" + Path.DirectorySeparatorChar + now.Year + Path.DirectorySeparatorChar + now.Month + Path.DirectorySeparatorChar + now.Day + Path.DirectorySeparatorChar + now.Hour + Path.DirectorySeparatorChar +
+                var errorFile = tempPath + Path.DirectorySeparatorChar + Constants.Dirs.Errors + Path.DirectorySeparatorChar + now.Year + Path.DirectorySeparatorChar + now.Month + Path.DirectorySeparatorChar + now.Day + Path.DirectorySeparatorChar + now.Hour + Path.DirectorySeparatorChar +
                                 name + filePath.Substring(filePath.LastIndexOf(Path.DirectorySeparatorChar));
 
                 Directory.CreateDirectory(errorFile.Substring(0, errorFile.LastIndexOf(Path.DirectorySeparatorChar)));
@@ -176,6 +176,18 @@ namespace Lite.Core.Utils
             catch (Exception e)
             {
                 _logger.LogFullException(e);
+            }
+        }
+
+        public void DeleteAndForget(string file, string taskInfo = null)
+        {
+            try
+            {
+                File.Delete(file);
+            }
+            catch (Exception e)
+            {
+                _logger.LogFullException(e, taskInfo);
             }
         }
     }

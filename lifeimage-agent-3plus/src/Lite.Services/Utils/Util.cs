@@ -13,8 +13,6 @@ namespace Lite.Core.Utils
 {
     public sealed class Util : IUtil
     {
-        public const string programDataFolderName = "Life Image Transfer Exchange";
-
         private readonly IDiskUtils _diskUtils;
         private readonly ILogger _logger;
 
@@ -237,12 +235,12 @@ WantedBy=multi-user.target
 
                 if (path == "")
                 {
-                    retval = Path.GetFullPath(appData + Path.DirectorySeparatorChar + programDataFolderName);
+                    retval = Path.GetFullPath(appData + Path.DirectorySeparatorChar + Constants.ProgramDataFolderName);
                 }
                 else
                 {
 
-                    retval = Path.GetFullPath(appData + Path.DirectorySeparatorChar + programDataFolderName + Path.DirectorySeparatorChar + path);
+                    retval = Path.GetFullPath(appData + Path.DirectorySeparatorChar + Constants.ProgramDataFolderName + Path.DirectorySeparatorChar + path);
 
                 }
 
@@ -259,14 +257,14 @@ WantedBy=multi-user.target
                 }
                 if (path == "")
                 {
-                    retval = (home == "" ? "" : home + Path.DirectorySeparatorChar) + programDataFolderName + Path.DirectorySeparatorChar + LiteEngine.version + Path.DirectorySeparatorChar + Directory.GetCurrentDirectory().Substring(Directory.GetCurrentDirectory().LastIndexOf(Path.DirectorySeparatorChar) + 1);
+                    retval = (home == "" ? "" : home + Path.DirectorySeparatorChar) + Constants.ProgramDataFolderName + Path.DirectorySeparatorChar + LiteEngine.version + Path.DirectorySeparatorChar + Directory.GetCurrentDirectory().Substring(Directory.GetCurrentDirectory().LastIndexOf(Path.DirectorySeparatorChar) + 1);
                     _logger.Log(LogLevel.Debug, $"home: {home} returning home path: {retval}");
                     return retval;
 
                 }
                 else
                 {
-                    retval = (home == "" ? "" : home + Path.DirectorySeparatorChar) + programDataFolderName + Path.DirectorySeparatorChar + LiteEngine.version + Path.DirectorySeparatorChar + Directory.GetCurrentDirectory().Substring(Directory.GetCurrentDirectory().LastIndexOf(Path.DirectorySeparatorChar) + 1) + Path.DirectorySeparatorChar + path;
+                    retval = (home == "" ? "" : home + Path.DirectorySeparatorChar) + Constants.ProgramDataFolderName + Path.DirectorySeparatorChar + LiteEngine.version + Path.DirectorySeparatorChar + Directory.GetCurrentDirectory().Substring(Directory.GetCurrentDirectory().LastIndexOf(Path.DirectorySeparatorChar) + 1) + Path.DirectorySeparatorChar + path;
                     _logger.Log(LogLevel.Debug, $"home: {home} returning combined home path: {retval}");
                     return retval;
                 }

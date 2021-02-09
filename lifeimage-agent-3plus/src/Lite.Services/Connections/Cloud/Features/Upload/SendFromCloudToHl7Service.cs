@@ -63,7 +63,8 @@ namespace Lite.Services.Connections.Cloud.Features
                 stopWatch.Start();
 
                 //set theConnection.URL http://localhost:8080/universal-inbox/api/agent/v1/hl7-upload
-                string putHL7URL = Connection.URL + "/api/agent/v1/hl7-upload?connectionName=" + routedItem.fromConnection;
+                //string putHL7URL = Connection.URL + "/api/agent/v1/hl7-upload?connectionName=" + routedItem.fromConnection;
+                string putHL7URL = Connection.URL + CloudAgentConstants.GetPutHl7Url(routedItem.fromConnection);
                 _logger.Log(LogLevel.Debug, $"{taskInfo} putHL7URL: {putHL7URL}");
 
                 //generate guid for boundary...boundaries cannot be accidentally found in the content

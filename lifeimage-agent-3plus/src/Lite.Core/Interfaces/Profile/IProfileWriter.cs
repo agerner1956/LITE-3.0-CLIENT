@@ -6,9 +6,4 @@ namespace Lite.Core.Interfaces
     {
         Task SaveProfile(Profile profile);
     }
-
-    public interface IFileProfileWriter
-    {
-        void Save(Profile profile, string fileName);
-    }
 }

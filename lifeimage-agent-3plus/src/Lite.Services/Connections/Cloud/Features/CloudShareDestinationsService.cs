@@ -49,7 +49,8 @@ namespace Lite.Services.Connections.Cloud.Features
                 try
                 {
                     //set the URL
-                    string shareURL = Connection.URL + "/api/box/v3/listAllPublishable";
+                    //string shareURL = Connection.URL + "/api/box/v3/listAllPublishable";
+                    string shareURL = Connection.URL + CloudAgentConstants.GetShareDestinationUrl;
 
                     _logger.Log(LogLevel.Debug, $"{taskInfo} shareURL: {shareURL}");
 

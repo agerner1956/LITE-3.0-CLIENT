@@ -1,0 +1,420 @@
+{
+  "availableCodeVersions": null,
+  "activationTime": "0001-01-01T00:00:00",
+  "backlogDetection": true,
+  "backlogInterval": 5000,
+  "duplicatesDetectionUpload": false,
+  "duplicatesDetectionDownload": false,
+  "duplicatesDetectionInterval": 600,
+  "modalityDetectionArchivePeriod": 10,
+  "modalityList": [],
+  "connectionEvaluation": true,
+  "connections": [
+    {
+      "name": "liCloud",
+      "enabled": true,
+      "connType": "cloud",
+      "remotePort": 0,
+      "localPort": 0,
+      "shareDestinations": [
+        {
+          "boxId": "9364",
+          "groupId": "14512",
+          "groupName": "as as",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "Clinical Connector",
+          "boxName": "asde@example.com",
+          "boxUuid": "5218bdda-b6cd-4879-bd90-19a6aece3665"
+        },
+        {
+          "boxId": "9603",
+          "groupId": "15117",
+          "groupName": "bqa10next",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bqa10 QA",
+          "boxName": "bqa10pc",
+          "boxUuid": "ca8c353f-2377-4490-8744-c505cd3b9297"
+        },
+        {
+          "boxId": "9390",
+          "groupId": "14579",
+          "groupName": "bqa5grp",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bqa5",
+          "boxName": "bqa5pc",
+          "boxUuid": "4647cd85-8305-4bc5-a731-fc932ed8c1f4"
+        },
+        {
+          "boxId": "9397",
+          "groupId": "14601",
+          "groupName": "bqa6grp",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "bqa6",
+          "boxName": "bqa6pc",
+          "boxUuid": "5c1521ce-d061-4a7f-a22f-35eb6a037847"
+        },
+        {
+          "boxId": "9388",
+          "groupId": "14535",
+          "groupName": "lifeimageqa+bqa114@lifeimage.com",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "lifeIMAGE Network",
+          "boxName": "lifeimageqa+bqa114@lifeimage.com",
+          "boxUuid": "9608e769-5a69-42cc-b230-d16c0e6f2ba9"
+        },
+        {
+          "boxId": "9240",
+          "groupId": "14299",
+          "groupName": "lifeimageqa+lite114pg@lifeimage.com",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "lifeIMAGE Network",
+          "boxName": "lifeimageqa+lite114pg@lifeimage.com",
+          "boxUuid": "cbf31995-45e1-4beb-9930-3a810ad3150a"
+        },
+        {
+          "boxId": "5916",
+          "groupId": "8419",
+          "groupName": "LILAb41ReferralBox",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "LILAb41",
+          "boxName": "ReferralBox Group A",
+          "boxUuid": "ad3c4747-93e0-45fb-8bbc-29445cdc2fae"
+        },
+        {
+          "boxId": "9247",
+          "groupId": "14277",
+          "groupName": "lite114pc",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "lite114 org",
+          "boxName": "lite114pc",
+          "boxUuid": "5cc4c69e-ecb7-429d-a148-399f852e77f6"
+        },
+        {
+          "boxId": "9594",
+          "groupId": "15057",
+          "groupName": "litev2 pc group",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "LITEV2",
+          "boxName": "litev2pc",
+          "boxUuid": "eaaaf75e-293d-48e1-ac87-bd1e047d721a"
+        },
+        {
+          "boxId": "9343",
+          "groupId": "14511",
+          "groupName": "Mammosphere",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "qalila12",
+          "boxName": "Mammosphere",
+          "boxUuid": "3e587efd-d179-474c-8991-8534cfb0a1a2"
+        },
+        {
+          "boxId": "7955",
+          "groupId": "12218",
+          "groupName": "PCRB",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "qalila05mtnew",
+          "boxName": "PurecloudRB",
+          "boxUuid": "bdca58b4-2c40-4e09-a59d-fc2a8311dbc7"
+        },
+        {
+          "boxId": "4104",
+          "groupId": "7048",
+          "groupName": "Pure Cloud",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "LILAb41",
+          "boxName": "LILAb41PureCloud",
+          "boxUuid": "da6e769b-d9f6-4b7a-bcf6-46be3a73e328"
+        },
+        {
+          "boxId": "9978",
+          "groupId": "15794",
+          "groupName": "qa19grp",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "QAQAUni of I Hospital & Clinics ",
+          "boxName": "qa19pc",
+          "boxUuid": "7e2f5cad-a14c-4259-9870-6edfc46abb05"
+        },
+        {
+          "boxId": "9095",
+          "groupId": "14063",
+          "groupName": "qalila12 RB",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "qalila12",
+          "boxName": "qalila12 Referralbox",
+          "boxUuid": "1477d58a-3d2b-4e4f-9602-df78018e2aae"
+        },
+        {
+          "boxId": "9270",
+          "groupId": "14329",
+          "groupName": "RajaQAIGnore University of Iowa Hospital & Clinics1",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "Raja RajaQAIGnore Uniof I Hospital & Clinics1 bqa1",
+          "boxName": "bqa1pc",
+          "boxUuid": "0afd0504-13b4-40b8-aa6a-426a399f5165"
+        },
+        {
+          "boxId": "8737",
+          "groupId": "13566",
+          "groupName": "RBonly",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "qab50lila50ssl3",
+          "boxName": "RBonly",
+          "boxUuid": "80fa47a7-05f3-4237-abb4-184657a3a212"
+        },
+        {
+          "boxId": "4607",
+          "groupId": "7662",
+          "groupName": "ReferralBox Group C",
+          "publishableBoxType": "CONNECTION",
+          "organizationName": "LILAb41",
+          "boxName": "LILA GROUP C",
+          "boxUuid": "57340c4b-24c7-4b63-a7f5-24e39bf2e988"
+        }
+      ],
+      "Boxes": [
+        {
+          "boxId": null,
+          "groupId": null,
+          "groupName": null,
+          "publishableBoxType": null,
+          "organizationName": null,
+          "boxName": "LITESample",
+          "boxUuid": "19db62ba-128d-412c-8c4f-df28351e8ae0"
+        }
+      ],
+      "URL": "https://dqs3-qa-cloud.lifeimage.lan/universal-inbox",
+      "httpRequestTimeout": "00:30:00",
+      "ServicePoint": "localhost",
+      "stores": {},
+      "X509StoreName": 5,
+      "X509StoreLocation": 1,
+      "EnforceServerCertificate": false,
+      "ResponseCacheExpiryMinutes": 60,
+      "requestResponseEnabled": true,
+      "UseIPV4": true,
+      "UseIPV6": false,
+      "sendIntermediateResults": false,
+      "TestConnection": false,
+      "isPrimary": true,
+      "CalcCompressionStats": false,
+      "maxStudyDownloadTasks": 5,
+      "maxHL7UploadTasks": 1,
+      "maxPostResponseTasks": 1,
+      "maxWadoTasks": 5,
+      "maxStowTasks": 5,
+      "organizationCode": "bqa4",
+      "serviceName": "bqa4pc",
+      "subscriptionCode": "64754dc4-5c24-4981-8f1c-a54fc2b5b580",
+      "tenantID": "ddd0e945-ff2e-45c9-ac46-af8ee5ba73e3",
+      "minStowBatchSize": 10240000,
+      "MaxRequestAgeMinutes": 30,
+      "StudyCloseInterval": 5,
+      "maxConnectionsPerServer": 10,
+      "useTLS": false,
+      "username": "donotreply+bqa4agent20210122022025@lifeimage.com",
+      "responsive": true,
+      "Password": "LITE-69e9Fi7JWy02rrmjGXb30g==",
+      "sharedKey": "J4NEHXLxQZJi0cigCFi6VAg+1SGsP90SXiz/zqa+G3M=",
+      "IV": "hP9uB8YQt5TRkNjoALJAlw==",
+      "maxAttempts": 10,
+      "retryDelayMinutes": 10,
+      "inout": "both",
+      "PushPull": "push"
+    },
+    {
+      "name": "dcmtkC",
+      "enabled": true,
+      "connType": "dcmtk",
+      "remoteHostname": "10.44.60.147",
+      "localHostname": "",
+      "remotePort": 1046,
+      "localAETitle": "LITE60147",
+      "remoteAETitle": "DQS3-QA60147",
+      "localPort": 11115,
+      "ServicePoint": "localhost",
+      "stores": {},
+      "X509StoreName": 5,
+      "X509StoreLocation": 1,
+      "EnforceServerCertificate": false,
+      "ResponseCacheExpiryMinutes": 60,
+      "requestResponseEnabled": true,
+      "UseIPV4": true,
+      "UseIPV6": false,
+      "sendIntermediateResults": false,
+      "TestConnection": false,
+      "isPrimary": false,
+      "ModalityList": null,
+      "storescpCfgFile": "C:\\ProgramData\\Life Image Transfer Exchange\\Profiles\\storescp.cfg",
+      "useTLS": false,
+      "responsive": true,
+      "maxAttempts": 10,
+      "retryDelayMinutes": 10,
+      "inout": "both",
+      "PushPull": "push"
+    },
+    {
+      "name": "HL7",
+      "enabled": true,
+      "connType": "hl7",
+      "remoteHostname": "",
+      "localHostname": "10.44.60.147",
+      "remotePort": 0,
+      "localPort": 2800,
+      "receiveBufferSize": 0,
+      "exclusiveAddressUse": false,
+      "linger": false,
+      "lingerms": 0,
+      "noDelay": false,
+      "receiveTimeout": 0,
+      "sendBufferSize": 0,
+      "sendTimeout": 0,
+      "ackMode": "Custom",
+      "ack": "ACK",
+      "IdleTimeout": 500,
+      "maxHL7InboundTasks": 1,
+      "ServicePoint": "localhost",
+      "stores": {},
+      "X509StoreName": 5,
+      "X509StoreLocation": 1,
+      "EnforceServerCertificate": false,
+      "ResponseCacheExpiryMinutes": 60,
+      "requestResponseEnabled": true,
+      "UseIPV4": true,
+      "UseIPV6": false,
+      "sendIntermediateResults": false,
+      "TestConnection": false,
+      "isPrimary": false,
+      "maxInboundConnections": 30,
+      "useTLS": false,
+      "responsive": true,
+      "maxAttempts": 10,
+      "retryDelayMinutes": 10,
+      "inout": "inbound",
+      "PushPull": "push"
+    }
+  ],
+  "errors": [],
+  "highWaitDelay": 60000,
+  "KickOffInterval": 58000,
+  "logger": {
+    "ConsoleTraceLevel": "Warning",
+    "FileTraceLevel": "Verbose",
+    "SplunkTraceLevel": "Info",
+    "TracePattern": null
+  },
+  "logRetentionDays": 15,
+  "LogFileSize": 10240000,
+  "name": "LITE default profile",
+  "Labels": {
+    "Key": {
+      "en-us": "Value"
+    }
+  },
+  "rules": {
+    "destRules": [
+      {
+        "name": "PACStoCloud",
+        "enabled": true,
+        "fromConnectionName": "dcmtkC",
+        "toConnections": [
+          {
+            "connectionName": "liCloud",
+            "shareDestinations": [
+              {
+                "boxId": "9390",
+                "groupId": "14579",
+                "groupName": "bqa5grp",
+                "publishableBoxType": "CONNECTION",
+                "organizationName": "bqa5",
+                "boxName": "bqa5pc",
+                "boxUuid": "4647cd85-8305-4bc5-a731-fc932ed8c1f4"
+              }
+            ]
+          }
+        ],
+        "ruleTags": [],
+        "Type": 0,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "DownloadToPacs",
+        "enabled": true,
+        "fromConnectionName": "liCloud",
+        "toConnections": [
+          {
+            "connectionName": "dcmtkC",
+            "shareDestinations": []
+          }
+        ],
+        "ruleTags": [],
+        "Type": 0,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      },
+      {
+        "name": "hl7ToCloud",
+        "enabled": true,
+        "fromConnectionName": "HL7",
+        "toConnections": [
+          {
+            "connectionName": "liCloud",
+            "shareDestinations": []
+          }
+        ],
+        "ruleTags": [],
+        "Type": 0,
+        "preProcessFromConnectionScriptNames": [],
+        "postProcessFromConnectionScriptNames": [],
+        "preProcessToConnectionScriptNames": [],
+        "postProcessToConnectionScriptNames": []
+      }
+    ],
+    "scripts": [
+      {
+        "name": "Hello World",
+        "source": "using System.Diagnostics; if (logger.logLevel == \"Trace\") logger.Log(TraceEventType.Verbose, $\"Hello World\");",
+        "imports": [
+          ""
+        ],
+        "references": [
+          "System.Object"
+        ],
+        "errors": null
+      }
+    ]
+  },
+  "run": [],
+  "tempPath": "C:\\ProgramData\\Life Image Transfer Exchange\\tmp",
+  "tempFileRetentionHours": 4,
+  "version": 3,
+  "dcmtkLibPath": "tools\\dcmtk\\dcmtk-3.6.5-win64-dynamic",
+  "lastKickOff": "2021-01-22T15:35:20.6352833-05:00",
+  "lastStartup": "2021-01-22T14:20:27.4272078-05:00",
+  "maxTaskDuration": "01:00:00",
+  "mediumWaitDelay": 30000,
+  "minFreeDiskBytes": 209715200,
+  "recoveryInterval": 10000,
+  "runningCodeVersion": "2.4.127-next-127",
+  "startupParams": {
+    "localProfilePath": "C:\\ProgramData\\Life Image Transfer Exchange\\Profiles\\DefaultProfile_dqs3qa.json",
+    "saveProfilePath": "C:\\ProgramData\\Life Image Transfer Exchange\\Profiles\\DefaultProfile_dqs3qa.json",
+    "getServerProfile": true,
+    "putServerProfile": true,
+    "generateSchema": false,
+    "validateProfile": true
+  },
+  "taskDelay": 1000,
+  "updatePassword": {
+    "Field": "LITE-TGD7oiiV2aLFy7PNVoErzw==",
+    "sharedKey": "aFfKiuDt9V5ppT/Du2IYahjkBYSE+rSUvxlc8adotm8=",
+    "IV": "tVKebfD2xud9Qb1SZ0L7eA=="
+  },
+  "updateUsername": "liadmin",
+  "UsePowershellUpgrade": false,
+  "useSocketsHttpHandler": true
+}

@@ -76,7 +76,8 @@ namespace Lite.Services.Connections.Cloud.Features
                 }
 
                 //POST /api/agent/v1/study/{studyInstanceUid}/upload-close
-                string studyCloseURL = Connection.URL + $"/api/agent/v1/study/{routedItem.Study}/upload-close";
+                //string studyCloseURL = Connection.URL + $"/api/agent/v1/study/{routedItem.Study}/upload-close";
+                string studyCloseURL = Connection.URL + CloudAgentConstants.GetUploadCloseUrl(routedItem.Study);
 
                 _logger.Log(LogLevel.Debug, $"{taskInfo} studyCloseURL: {studyCloseURL}");
 

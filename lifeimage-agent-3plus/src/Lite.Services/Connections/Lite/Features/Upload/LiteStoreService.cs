@@ -70,7 +70,8 @@ namespace Lite.Services.Connections.Lite.Features
                 stopWatch.Start();
 
                 //set the URL
-                string resourceURL = Connection.URL + "/api/File";
+                //string resourceURL = Connection.URL + "/api/File";
+                string resourceURL = Connection.URL + FileAgentConstants.BaseUrl;
                 _logger.Log(LogLevel.Debug, $"{taskInfo} URL: {resourceURL}");
 
                 // generate guid for boundary...boundaries cannot be accidentally found in the content

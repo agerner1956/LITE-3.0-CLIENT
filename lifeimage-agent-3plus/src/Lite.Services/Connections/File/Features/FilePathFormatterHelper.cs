@@ -24,12 +24,12 @@ namespace Lite.Services.Connections.Files.Features
 
             //transform the inpath as needed by replacing variable names included in the inpath with the current values
             string path = connection.inpath;
-            int start = 0, end = 0;
+            int end = 0;
             if (connection.inpath.Contains("{"))
             {
                 do
                 {
-                    start = end;
+                    int start = end;
                     //we need to replace variable specifiers
                     start = connection.inpath.IndexOf("{", start);
                     if (start == -1)
@@ -45,7 +45,7 @@ namespace Lite.Services.Connections.Files.Features
 
                     var variable = connection.inpath.Substring(start + 1, end - start - 1);
                     RoutedItem.PropertyNames name;
-                    if (RoutedItem.PropertyNames.TryParse(variable, out name))
+                    if (System.Enum.TryParse(variable, out name))
                     {
                         switch (name)
                         {

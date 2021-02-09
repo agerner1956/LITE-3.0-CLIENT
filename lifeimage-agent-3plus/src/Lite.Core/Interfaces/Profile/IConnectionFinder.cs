@@ -11,6 +11,7 @@ namespace Lite.Core.Interfaces
         List<Connection> GetConnectionsByType(Profile profile, ConnectionType eType);
         List<LifeImageCloudConnection> GetLifeimageCloudConnections(Profile profile);
         LITEConnection GetLITEConnection(Profile profile);
+        LITEConnection GetPrimaryLITEConnection(Profile profile);
         LifeImageCloudConnection GetPrimaryLifeImageConnection(Profile profile);
         DICOMConnection GetDicomConnectionToLocalAETitle(Profile profile, string localAETitle);
     }

@@ -1,4 +1,5 @@
-﻿using Lite.Core.Connections;
+﻿using Lite.Core;
+using Lite.Core.Connections;
 using Lite.Core.Interfaces;
 using Lite.Core.Models;
 using Lite.Core.Utils;
@@ -137,10 +138,10 @@ namespace Lite.Services.Connections.Dcmtk.Features
                 if (profile.dcmtkLibPath != null)
                 {
                     procinfo.FileName = profile.dcmtkLibPath + Path.DirectorySeparatorChar + "bin" + Path.DirectorySeparatorChar + "findscu";
-                    var DCMDICTPATH = profile.dcmtkLibPath + Path.DirectorySeparatorChar + "share" + Path.DirectorySeparatorChar + "dcmtk" + Path.DirectorySeparatorChar + "dicom.dic";
-                    DCMDICTPATH += _util.EnvSeparatorChar() + profile.dcmtkLibPath + Path.DirectorySeparatorChar + "share" + Path.DirectorySeparatorChar + "dcmtk" + Path.DirectorySeparatorChar + "acrnema.dic";
-                    DCMDICTPATH += _util.EnvSeparatorChar() + profile.dcmtkLibPath + Path.DirectorySeparatorChar + "share" + Path.DirectorySeparatorChar + "dcmtk" + Path.DirectorySeparatorChar + "diconde.dic";
-                    DCMDICTPATH += _util.EnvSeparatorChar() + profile.dcmtkLibPath + Path.DirectorySeparatorChar + "share" + Path.DirectorySeparatorChar + "dcmtk" + Path.DirectorySeparatorChar + "private.dic";
+                    var DCMDICTPATH = profile.dcmtkLibPath + Path.DirectorySeparatorChar + Constants.Dirs.share + Path.DirectorySeparatorChar + Constants.Dirs.dcmtk + Path.DirectorySeparatorChar + "dicom.dic";
+                    DCMDICTPATH += _util.EnvSeparatorChar() + profile.dcmtkLibPath + Path.DirectorySeparatorChar + Constants.Dirs.share + Path.DirectorySeparatorChar + Constants.Dirs.dcmtk + Path.DirectorySeparatorChar + "acrnema.dic";
+                    DCMDICTPATH += _util.EnvSeparatorChar() + profile.dcmtkLibPath + Path.DirectorySeparatorChar + Constants.Dirs.share + Path.DirectorySeparatorChar + Constants.Dirs.dcmtk + Path.DirectorySeparatorChar + "diconde.dic";
+                    DCMDICTPATH += _util.EnvSeparatorChar() + profile.dcmtkLibPath + Path.DirectorySeparatorChar + Constants.Dirs.share + Path.DirectorySeparatorChar + Constants.Dirs.dcmtk + Path.DirectorySeparatorChar + "private.dic";
                     procinfo.Environment.Add("DCMDICTPATH", DCMDICTPATH);
                 }
                 else

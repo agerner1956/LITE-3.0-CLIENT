@@ -105,7 +105,7 @@ namespace Lite.Services.Routing.RouteItemManager
                     //Formatting = Formatting.Indented
                 };
 
-                dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + conn.name + Path.DirectorySeparatorChar + queueName + Path.DirectorySeparatorChar + "meta";
+                dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + conn.name + Path.DirectorySeparatorChar + queueName + Path.DirectorySeparatorChar + Constants.Dirs.Meta;
                 Directory.CreateDirectory(dir);
                 string fileName = dir + Path.DirectorySeparatorChar + System.Guid.NewGuid() + Constants.Extensions.MetaExt;
                 Item.RoutedItemMetaFile = fileName;

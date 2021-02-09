@@ -26,24 +26,24 @@ namespace Lite.Services.Connections
 {
     public interface ILiteConnectionManager : IConnectionManager
     {
-
+        Task RegisterLITE(Profile lite);
     }
 
     public class LiteConnectionManager : HttpConnectionManagerBase<LITEConnection>, ILiteConnectionManager
     {        
         public static readonly ObservableCollection<Profile> LITERegistry = new ObservableCollection<Profile>();
         
-        public ObservableCollection<string[]> markDownloadsComplete = new ObservableCollection<string[]>();
+        public readonly ObservableCollection<string[]> markDownloadsComplete = new ObservableCollection<string[]>();
         
-        public ObservableCollection<Series> markSeriesComplete = new ObservableCollection<Series>();
+        public readonly ObservableCollection<Series> markSeriesComplete = new ObservableCollection<Series>();
         
         public readonly SemaphoreSlim ToEGSSignal = new SemaphoreSlim(0, 1);
         
         public readonly SemaphoreSlim FromEGSSignal = new SemaphoreSlim(0, 1);
         
-        public Dictionary<string, HubConnection> hubConnections = new Dictionary<string, Microsoft.AspNetCore.SignalR.Client.HubConnection>();
+        public readonly Dictionary<string, HubConnection> hubConnections = new Dictionary<string, Microsoft.AspNetCore.SignalR.Client.HubConnection>();
         
-        public ObservableCollection<RoutedItem> hubMessages = new ObservableCollection<RoutedItem>();
+        public readonly ObservableCollection<RoutedItem> hubMessages = new ObservableCollection<RoutedItem>();
         
         private readonly SemaphoreSlim HubMessagesSignal = new SemaphoreSlim(0, 1);
 
@@ -177,7 +177,7 @@ namespace Lite.Services.Connections
 
                 //read the persisted RoutedItems bound for Rules
 
-                dir = profile.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar + "toRules" + Path.DirectorySeparatorChar + Constants.Dirs.Meta;
+                dir = profile.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar + Constants.Dirs.ToRules + Path.DirectorySeparatorChar + Constants.Dirs.Meta;
                 Directory.CreateDirectory(dir);
                 fileEntries = _util.DirSearch(dir, Constants.Extensions.MetaExt.ToSearchPattern());
 

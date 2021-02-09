@@ -44,11 +44,15 @@ namespace Lite.Services.Connections.Hl7
         private readonly ISendToHl7Service _sendToHl7Service;
         private readonly IHl7ReaderService _hl7ReaderService;
         private readonly IHl7AcceptService _hl7AcceptService;
+        private readonly IHl7StartService _hl7StartService;
+        private readonly IHl7ClientsCleaner _hl7ClientsCleaner;
 
         public Hl7ConnectionManager(
             IHl7ReaderService hl7ReaderService,
             IHl7AcceptService hl7AcceptService,
+            IHl7StartService hl7StartService,
             ISendToHl7Service sendToHl7Service,
+            IHl7ClientsCleaner hl7ClientsCleaner,
             IProfileStorage profileStorage,
             ILiteConfigService liteConfigService,
             IRoutedItemManager routedItemManager,
@@ -59,9 +63,11 @@ namespace Lite.Services.Connections.Hl7
             ILogger<Hl7ConnectionManager> logger) :
             base(profileStorage, liteConfigService, routedItemManager, routedItemLoader, rulesManager, taskManager, logger, util)
         {
+            _hl7StartService = hl7StartService;
             _hl7ReaderService = hl7ReaderService;
             _sendToHl7Service = sendToHl7Service;
             _hl7AcceptService = hl7AcceptService;
+            _hl7ClientsCleaner = hl7ClientsCleaner;
         }
 
         protected override void ProcessImpl(Connection connection)
@@ -106,7 +112,7 @@ namespace Lite.Services.Connections.Hl7
 
             //read the persisted RoutedItems bound for Rules
 
-            string dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar + "toRules" + Path.DirectorySeparatorChar + Constants.Dirs.Meta;
+            string dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar + Constants.Dirs.ToRules + Path.DirectorySeparatorChar + Constants.Dirs.Meta;
             Directory.CreateDirectory(dir);
             var fileEntries = _util.DirSearch(dir, Constants.Extensions.MetaExt.ToSearchPattern());
 
@@ -214,104 +220,7 @@ namespace Lite.Services.Connections.Hl7
 
         public async Task Start()
         {
-            try
-            {
-                //check existing listeners and remove if dead
-                foreach (var bourne in listeners)
-                {
-                    if (!bourne.Active())
-                    {
-                        deadListeners.Add(bourne);
-                        try
-                        {
-                            bourne.Stop();
-                        }
-                        catch (Exception) { }
-                    }
-                    else
-                    {
-                        _logger.Log(LogLevel.Debug, $"{bourne.LocalEndpoint} Active: {bourne.Active()} Connections Pending: {bourne.Pending()}");
-                    }
-                }
-
-                foreach (var bourne in deadListeners)
-                {
-                    listeners.Remove(bourne);
-                }
-
-                //frequent DNS lookup required for Cloud and HA environments where a lower TTL results in faster failover.
-                //For a listener this means a container might have been moved to another server with different IP.
-                var hostEntry = Dns.GetHostEntry(Connection.localHostname);
-
-                foreach (var ip in hostEntry.AddressList)
-                {
-                    _logger.Log(LogLevel.Information, $"{Connection.name} hostEntry: {Connection.localHostname} ip: {ip}");
-                    BourneListens bourne = null;
-                    if (ip.AddressFamily == AddressFamily.InterNetworkV6 && Connection.UseIPV6)
-                    {
-
-                        if (!listeners.Exists(x => x.localaddr.Equals(ip) && x.port.Equals(Connection.localPort)))
-                        {
-                            bourne = new BourneListens(ip, Connection.localPort);
-                            listeners.Add(bourne);
-
-                            //you can verify Start worked on mac by doing lsof -n -i:2575 | grep LISTEN, where 2575 is HL7 or whatever port you want.
-                            bourne.Start();
-                            _logger.Log(LogLevel.Information, $"{Connection.name} is listening on {bourne.LocalEndpoint}");
-                            _logger.Log(LogLevel.Information, $"{Connection.name} Verify with Mac/Linux:lsof -n -i:{Connection.localPort} | grep LISTEN and with echo \"Hello world\" | nc {Connection.localHostname} {Connection.localPort}");
-                            _logger.Log(LogLevel.Information, $"{Connection.name} Verify with Windows:netstat -abno (requires elevated privileges)");
-                        }
-                    }
-                    if ((ip.AddressFamily == AddressFamily.InterNetwork && Connection.UseIPV4 && !RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) || (ip.AddressFamily == AddressFamily.InterNetwork && Connection.UseIPV4 && !Connection.UseIPV6 && RuntimeInformation.IsOSPlatform(OSPlatform.Windows)))
-                    {
-                        if (!listeners.Exists(x => x.localaddr.Equals(ip) && x.port.Equals(Connection.localPort)))
-                        {
-                            bourne = new BourneListens(ip, Connection.localPort);
-                            listeners.Add(bourne);
-
-                            //you can verify Start worked on mac by doing lsof -n -i:2575 | grep LISTEN, where 2575 is HL7 or whatever port you want.
-                            bourne.Start();
-                            _logger.Log(LogLevel.Information, $"{Connection.name} is listening on {bourne.LocalEndpoint}");
-                            _logger.Log(LogLevel.Information, $"{Connection.name} Verify with Mac/Linux:lsof -n -i:{Connection.localPort} | grep LISTEN and with echo \"Hello world\" | nc {Connection.localHostname} {Connection.localPort}");
-                            _logger.Log(LogLevel.Information, $"{Connection.name} Verify with Windows:netstat -abno (requires elevated privileges)");
-                        }
-                    }
-                }
-
-                foreach (var listener in listeners)
-                {
-                    if (listener != null && listener.LocalEndpoint != null)
-                    {
-                        if (LITETask.CanStart($"{Connection.name}.accept: {listener.LocalEndpoint}"))
-                        {
-                            var newTaskID = LITETask.NewTaskID();
-                            Task task = new Task(new Action(async () => await Accept(listener, newTaskID)), LITETask.cts.Token);
-                            await LITETask.Start(newTaskID, task, $"{Connection.name}.accept: {listener.LocalEndpoint}", $"{Connection.name}.accept: {listener.LocalEndpoint}", isLongRunning: true);
-                            await Task.Delay(1000);
-                        }
-                    }
-                    else
-                    {
-                        _logger.Log(LogLevel.Information, $"listener is disposed but still in list. Ignoring");
-                    }
-                }
-            }
-            catch (TaskCanceledException)
-            {
-                _logger.Log(LogLevel.Information, $"Task was canceled.");
-            }
-            catch (SocketException e)
-            {
-                _logger.Log(LogLevel.Warning, $"{e.Message} {e.StackTrace}");
-            }
-            catch (ObjectDisposedException e)
-            {
-                _logger.LogFullException(e);
-            }
-            catch (Exception e)
-            {
-                _logger.LogFullException(e);                
-            }
+            await _hl7StartService.Start(Connection, listeners, deadListeners, clients, Read);
         }
 
         public async Task Accept(BourneListens bourne, int taskID)
@@ -329,20 +238,8 @@ namespace Lite.Services.Connections.Hl7
         }
 
         public void Clean()
-        {            
-            foreach (var client in clients.ToArray())
-            {
-                if (!client.Connected)
-                {
-                    _logger.Log(LogLevel.Debug, $"{Connection.name} Disconnected");
-                    client.Dispose();
-                    clients.Remove(client);
-                }
-                else
-                {
-                    _logger.Log(LogLevel.Debug, $"{Connection.name} Connected: {client.Client.RemoteEndPoint}");
-                }
-            }
+        {
+            _hl7ClientsCleaner.Clean(Connection, clients);
         }
 
         public override async Task Kickoff(int taskID)

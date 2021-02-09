@@ -7,8 +7,6 @@ namespace Lite.Services.Config
 {
     public sealed class LiteConfigService : ILiteConfigService
     {
-        public const string StartupFileName = "startup.config.json";
-
         private readonly IUtil _util;
 
         public LiteConfigService(IUtil util)
@@ -18,7 +16,7 @@ namespace Lite.Services.Config
 
         public LiteConfig GetDefaults()
         {
-            string startupConfigFilePath = _util.GetTempFolder() + Path.DirectorySeparatorChar + Constants.ProfilesDir + Path.DirectorySeparatorChar + StartupFileName;
+            string startupConfigFilePath = _util.GetTempFolder() + Path.DirectorySeparatorChar + Constants.Dirs.Profiles + Path.DirectorySeparatorChar + Constants.StartupFileName;
             string tempPath = _util.GetTempFolder() + Path.DirectorySeparatorChar + "tmp";
 
             return new LiteConfig(startupConfigFilePath, tempPath);

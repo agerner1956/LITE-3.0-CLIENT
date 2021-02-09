@@ -1,10 +1,8 @@
 ﻿using Lite.Core;
 using Lite.Core.Guard;
 using Lite.Core.Interfaces;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Lite.Services
@@ -39,7 +37,7 @@ namespace Lite.Services
             {
                await SyncWithCloud(profile);
             }
-            catch (System.Threading.Tasks.TaskCanceledException)
+            catch (TaskCanceledException)
             {
                 _logger.Log(LogLevel.Information, $"{taskInfo} Task Canceled");
             }

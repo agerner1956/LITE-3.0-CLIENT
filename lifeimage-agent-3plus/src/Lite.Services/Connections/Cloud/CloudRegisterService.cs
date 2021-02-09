@@ -43,7 +43,7 @@ namespace Lite.Services.Connections.Cloud
             try
             {
                 //set the URL
-                string registerURL = Connection.URL + "/appregistry/v1/register";
+                string registerURL = Connection.URL + CloudAgentConstants.RegisterAsOrgUrl;
 
                 _logger.Log(LogLevel.Debug, $"{taskInfo} registerURL: {registerURL}");
 
@@ -109,7 +109,7 @@ namespace Lite.Services.Connections.Cloud
             try
             {
                 //set the URL
-                var uri = $"/api/admin/v1/agents/setup"; //?username={username}&password={password}";
+                var uri = CloudAgentConstants.RegisterUrl;// $"/api/admin/v1/agents/setup"; //?username={username}&password={password}";
                 string registerURL = Connection.URL + uri;
 
                 _logger.Log(LogLevel.Debug, $"registerURL: {registerURL}");

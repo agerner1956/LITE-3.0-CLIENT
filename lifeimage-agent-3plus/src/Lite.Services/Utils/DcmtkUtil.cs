@@ -265,7 +265,7 @@ namespace Lite.Core.Utils
                 {
 
                     ZipFile.ExtractToDirectory("tools/dcmtk/dcmtk-3.6.3-win64-dynamic.zip", "tools/dcmtk");
-                    profile.dcmtkLibPath = "tools" + Path.DirectorySeparatorChar + "dcmtk" + Path.DirectorySeparatorChar + "dcmtk-3.6.3-win64-dynamic";
+                    profile.dcmtkLibPath = "tools" + Path.DirectorySeparatorChar + Constants.Dirs.dcmtk + Path.DirectorySeparatorChar + "dcmtk-3.6.3-win64-dynamic";
                     //profile.Save(currentProfile);
                     _fileProfileWriter.Save(profile, currentProfile);
 

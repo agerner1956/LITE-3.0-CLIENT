@@ -7,6 +7,7 @@ using Lite.Core.Utils;
 using Lite.Services;
 using Lite.Services.Cache;
 using Lite.Services.Config;
+using Lite.Services.Configuration;
 using Lite.Services.Connections;
 using Lite.Services.Connections.Cloud;
 using Lite.Services.Connections.Cloud.Features;
@@ -52,6 +53,7 @@ namespace Lite3.Infrastructure.Extensions
             services.AddSingleton<IX509CertificateService, X509CertificateService>();
             services.AddSingleton<IRoutedItemLoader, RoutedItemLoader>();
             services.AddTransient<ILiteHttpClient, LiteHttpClient>();
+            services.AddTransient<IConfigurationLoader, ConfigurationLoader>();
 
             services.AddTransient<IDuplicatesDetectionService, DuplicatesDetectionService>();
 
@@ -78,6 +80,7 @@ namespace Lite3.Infrastructure.Extensions
             services.AddTransient<IRulesManager, RulesManager>();
 
             // profile features
+            services.AddTransient<IProfileConnectionsInitializer, ProfileConnectionsInitializer>();
             services.AddTransient<ICloudProfileLoaderService, CloudProfileLoaderService>();
             services.AddTransient<ICloudProfileWriterService, CloudProfileWriterService>();
             services.AddTransient<IProfileJsonHelper, ProfileJsonHelper>();
@@ -139,6 +142,8 @@ namespace Lite3.Infrastructure.Extensions
             services.AddTransient<IHl7ReaderService, Hl7ReaderService>();
             services.AddTransient<ISendToHl7Service, SendToHl7Service>();
             services.AddTransient<IHl7AcceptService, Hl7AcceptService>();
+            services.AddTransient<IHl7StartService, Hl7StartService>();
+            services.AddTransient<IHl7ClientsCleaner, Hl7ClientsCleaner>();
 
             // dcmtk features
             services.AddTransient<IDcmtkConnectionInitializer, DcmtkConnectionInitializer>();

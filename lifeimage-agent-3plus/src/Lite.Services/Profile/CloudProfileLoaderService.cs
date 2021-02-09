@@ -2,12 +2,10 @@
 using Lite.Core.Connections;
 using Lite.Core.Interfaces;
 using Lite.Core.Json;
-using Lite.Services.Connections;
 using Lite.Services.Http;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,8 +14,6 @@ namespace Lite.Services
 {
     public sealed class CloudProfileLoaderService : ICloudProfileLoaderService
     {
-        public const string AgentConfigurationUrl = "/api/agent/v1/agent-configuration";
-
         private readonly IProfileJsonHelper _jsonHelper;
         private readonly IProfileMerger _profileMerger;
         private readonly ILogger _logger;        
@@ -48,11 +44,11 @@ namespace Lite.Services
                 string profileURL = conn.URL;
                 if (rowVersion == null | _overrideVersionAndModifiedDate == true)
                 {
-                    profileURL += AgentConfigurationUrl;
+                    profileURL += CloudAgentConstants.AgentConfigurationUrl;
                 }
                 else
                 {
-                    profileURL += $"{AgentConfigurationUrl}?version={rowVersion}";
+                    profileURL += $"{CloudAgentConstants.AgentConfigurationUrl}?version={rowVersion}";
                 }
 
                 _logger.Log(LogLevel.Debug, $"{taskInfo} getProfileURL: {profileURL}");
@@ -92,7 +88,7 @@ namespace Lite.Services
                     _logger.Log(LogLevel.Debug, $"{taskInfo} No profile update available from cloud.");
                 }
             }
-            catch (System.Threading.Tasks.TaskCanceledException)
+            catch (TaskCanceledException)
             {
                 _logger.Log(LogLevel.Information, $"{taskInfo} Task Canceled");
             }

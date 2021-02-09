@@ -1,4 +1,5 @@
-﻿using Lite.Core.Connections;
+﻿using Lite.Core;
+using Lite.Core.Connections;
 using Lite.Core.Interfaces;
 using Lite.Core.Models;
 using Lite.Core.Utils;
@@ -65,8 +66,9 @@ namespace Lite.Services.Connections.Lite.Features
             var profile = _profileStorage.Current;
             var stopWatch = new Stopwatch();
             stopWatch.Start();
-            string url = Connection.URL + $"/api/File/{routedItem.box}/{routedItem.resource}";
-            string dir = profile.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar + "toRules" + Path.DirectorySeparatorChar + System.Guid.NewGuid();
+            //string url = Connection.URL + $"/api/File/{routedItem.box}/{routedItem.resource}";
+            string url = Connection.URL + FileAgentConstants.GetDownloadUrl(routedItem);
+            string dir = profile.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar + Constants.Dirs.ToRules + Path.DirectorySeparatorChar + Guid.NewGuid();
             Directory.CreateDirectory(dir);
             long fileSize = 0;
             HttpResponseMessage response = null;

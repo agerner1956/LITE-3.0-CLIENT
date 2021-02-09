@@ -14,15 +14,12 @@ namespace Lite.Services.Connections.Cloud
     {
         private readonly ILogger _logger;
         private readonly ICloudPingService _cloudPingService;
-        private readonly ILITETask _taskManager;
 
         public CloudKeepAliveService(
             ICloudPingService cloudPingService,
-            ILITETask taskManager,
             ILogger<CloudKeepAliveService> logger)
         {
             _cloudPingService = cloudPingService;
-            _taskManager = taskManager;
             _logger = logger;
         }
 
@@ -49,10 +46,6 @@ namespace Lite.Services.Connections.Cloud
             catch (Exception e)
             {
                 _logger.LogFullException(e, taskInfo);
-            }
-            finally
-            {
-                _taskManager.Stop($"{Connection.name}.KeepAlive");
             }
         }
     }

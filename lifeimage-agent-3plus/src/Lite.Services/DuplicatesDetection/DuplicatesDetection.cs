@@ -172,10 +172,8 @@ namespace Lite.Services
                 }
 
                 // create new duplicate Reference File
-                using (StreamWriter sw = File.CreateText(referenceFilePath))
-                {
-                    sw.Write(uniqueIdentifier);
-                }
+                using StreamWriter sw = File.CreateText(referenceFilePath);
+                sw.Write(uniqueIdentifier);
             }
 
             return true;
@@ -183,7 +181,7 @@ namespace Lite.Services
 
         private string uniqueDicomIdentifier(string path)
         {
-            string uniqueDicomIdentifier = "";
+            string uniqueDicomIdentifier;
             try
             {
                 var file = DicomFile.Open(path);

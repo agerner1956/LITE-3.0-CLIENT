@@ -112,7 +112,14 @@ namespace Lite.Services.Connections.Dicom
 
             //read the persisted RoutedItems bound for Rules
 
-            dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar + "toRules" + Path.DirectorySeparatorChar + Constants.Dirs.Meta;
+            dir = _profileStorage.Current.tempPath +
+                Path.DirectorySeparatorChar +
+                Connection.name +
+                Path.DirectorySeparatorChar +
+                Constants.Dirs.ToRules +
+                Path.DirectorySeparatorChar +
+                Constants.Dirs.Meta;
+
             Directory.CreateDirectory(dir);
             fileEntries = _util.DirSearch(dir, Constants.Extensions.MetaExt.ToSearchPattern());
 

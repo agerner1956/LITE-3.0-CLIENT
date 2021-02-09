@@ -38,7 +38,8 @@ namespace Lite.Services.Connections.Lite.Features
                 {
                     try
                     {
-                        var task = httpClient.GetAsync(Connection.URL + "/api/LITE");
+                        //var task = httpClient.GetAsync(Connection.URL + "/api/LITE");
+                        var task = httpClient.GetAsync(Connection.URL + LiteAgentConstants.BaseUrl);
                         var result = await task;
 
                         if (result.StatusCode == HttpStatusCode.OK) return true;

@@ -129,8 +129,8 @@ namespace Lite.Services.Studies
             try
             {
                 //set the URL
-                string studiesURL =
-                   Connection.URL + "/api/agent/v1/studies?state=NEEDS_DOWNLOADING&lifeImageSummary=true"; //add summary 
+                //string studiesURL = Connection.URL + "/api/agent/v1/studies?state=NEEDS_DOWNLOADING&lifeImageSummary=true"; //add summary
+                string studiesURL = Connection.URL + CloudAgentConstants.GetStudies; //add summary
 
                 _logger.Log(LogLevel.Debug, $"{taskInfo} studiesURL: {studiesURL}");
 

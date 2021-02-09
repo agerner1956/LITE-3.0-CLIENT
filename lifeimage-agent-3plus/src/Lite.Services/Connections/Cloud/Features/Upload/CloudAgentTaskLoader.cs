@@ -113,7 +113,8 @@ namespace Lite.Services.Connections.Cloud.Features
                     }
 
                     //set the URL
-                    string agentTasksURL = Connection.URL + "/api/agent/v1/agent-tasks";
+                    //string agentTasksURL = Connection.URL + "/api/agent/v1/agent-tasks";
+                    string agentTasksURL = Connection.URL + CloudAgentConstants.GetAgentTasksUrl;
 
                     _logger.Log(LogLevel.Debug, $"{taskInfo} agentTasksURL: {agentTasksURL}");
 

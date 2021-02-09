@@ -1,4 +1,6 @@
-﻿using Lite.Core.Interfaces;
+﻿using Lite.Core;
+using Lite.Core.Guard;
+using Lite.Core.Interfaces;
 using Lite.Core.Utils;
 using Microsoft.Extensions.Logging;
 using System;
@@ -34,79 +36,9 @@ namespace Lite.Services
 
             try
             {
-                //purge logs
-                //                 try
-                //                 {
-                //                     if (Logger.logger.FileTraceLevel == "Verbose") Logger.logger.Log(TraceEventType.Verbose, $"{taskInfo} Purging Logs");
-                //                     var date = DateTime.Now.AddDays(profile.logRetentionDays * -1);
-                // //                    var logFileCleanup = new LogFileCleanup();
-                // //                    logFileCleanup.CleanUp(date);
-                //                 }
-                //                 catch (Exception e)
-                //                 {
-                //                     Logger.logger.Log(TraceEventType.Error, $"Log Purge Failed. {e.Message} {e.StackTrace}");
-                //                     if (e.InnerException != null)
-                //                     {
-                //                         Logger.logger.Log(TraceEventType.Warning, $"Inner Exception: {e.InnerException}");
-                //                     }
-                //                 }
-
                 await Task.Run(() =>
                 {
-                    //purge temp
-                    Directory.CreateDirectory(profile.tempPath);
-                    _logger.Log(LogLevel.Debug, $"{taskInfo} Purging {profile.tempPath}");
-
-                    foreach (var file in _util.DirSearch(profile.tempPath, "*.*"))
-                    {
-                        try
-                        {
-                            if (File.Exists(file))
-                            {
-                                var attr = File.GetAttributes(file);
-                                if (!attr.HasFlag(FileAttributes.Hidden))
-                                {
-                                    var lastaccesstime = File.GetLastAccessTime(file);
-                                    var creationtime = File.GetCreationTime(file);
-                                    var lastwritetime = File.GetLastWriteTime(file);
-                                    var purgetime = DateTime.Now.AddHours(profile.tempFileRetentionHours * -1);
-                                    if (lastwritetime.CompareTo(purgetime) < 0
-                                        && lastaccesstime.CompareTo(purgetime) < 0
-                                        && creationtime.CompareTo(purgetime) < 0)
-                                    {
-                                        _logger.Log(LogLevel.Debug, $"Purging: {file}");
-
-                                        try
-                                        {
-                                            File.Delete(file);
-                                        }
-                                        catch (Exception e)
-                                        {
-                                            _logger.LogFullException(e, taskInfo);
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    _logger.Log(LogLevel.Debug, $"{taskInfo} Deleting hidden file {file}.");
-                                    try
-                                    {
-                                        File.Delete(file); //delete hidden files like .DS_Store
-                                    }
-                                    catch (Exception e)
-                                    {
-                                        _logger.LogFullException(e, taskInfo);
-                                    }
-                                }
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            _logger.LogFullException(e);
-                        }
-                    }
-
-                    _util.CleanUpDirectory(profile.tempPath);
+                    PurgeImpl(profile, taskInfo);
                 });
             }
             catch (TaskCanceledException)
@@ -115,11 +47,67 @@ namespace Lite.Services
             }
             catch (Exception e)
             {
-                _logger.LogFullException(e);                
+                _logger.LogFullException(e);
             }
             finally
             {
                 _taskManager.Stop($"Purge");
+            }
+        }
+
+        private void PurgeImpl(Profile profile, string taskInfo)
+        {
+            //purge temp
+            Directory.CreateDirectory(profile.tempPath);
+            _logger.Log(LogLevel.Debug, $"{taskInfo} Purging {profile.tempPath}");
+
+            var files = _util.DirSearch(profile.tempPath, "*.*");
+            foreach (var file in files)
+            {
+                try
+                {
+                    ProcessFile(profile, file, taskInfo);
+                }
+                catch (Exception e)
+                {
+                    _logger.LogFullException(e);
+                }
+            }
+
+            _util.CleanUpDirectory(profile.tempPath);
+        }
+
+        private void ProcessFile(Profile profile, string file, string taskInfo)
+        {
+            Throw.IfNull(profile);
+            Throw.IfNullOrWhiteSpace(file);
+
+            if (!File.Exists(file))
+            {
+                return;
+            }
+
+            var attr = File.GetAttributes(file);
+            if (attr.HasFlag(FileAttributes.Hidden))
+            {
+                _logger.Log(LogLevel.Debug, $"{taskInfo} Deleting hidden file {file}.");
+
+                //delete hidden files like .DS_Store
+                _util.DeleteAndForget(file, taskInfo);
+                return;
+            }
+
+            var lastaccesstime = File.GetLastAccessTime(file);
+            var creationtime = File.GetCreationTime(file);
+            var lastwritetime = File.GetLastWriteTime(file);
+            var purgetime = DateTime.Now.AddHours(profile.tempFileRetentionHours * -1);
+            if (lastwritetime.CompareTo(purgetime) < 0
+                && lastaccesstime.CompareTo(purgetime) < 0
+                && creationtime.CompareTo(purgetime) < 0)
+            {
+                _logger.Log(LogLevel.Debug, $"Purging: {file}");
+
+                _util.DeleteAndForget(file, taskInfo);
             }
         }
     }

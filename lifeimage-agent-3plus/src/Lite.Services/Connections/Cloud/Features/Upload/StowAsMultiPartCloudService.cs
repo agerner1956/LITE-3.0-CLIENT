@@ -1,4 +1,5 @@
-﻿using Lite.Core.Connections;
+﻿using Lite.Core;
+using Lite.Core.Connections;
 using Lite.Core.Guard;
 using Lite.Core.Interfaces;
 using Lite.Core.Models;
@@ -73,9 +74,9 @@ namespace Lite.Services.Connections.Cloud.Features
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();
 
-
                 //set the URL
-                string stowURL = Connection.URL + "/api/agent/v1/stow/studies";
+                //string stowURL = Connection.URL + "/api/agent/v1/stow/studies";
+                string stowURL = Connection.URL + CloudAgentConstants.StowStudies;
                 _logger.Log(LogLevel.Debug, $"{taskInfo} stowURL: {stowURL}");
 
                 // generate guid for boundary...boundaries cannot be accidentally found in the content
@@ -108,9 +109,9 @@ namespace Lite.Services.Connections.Cloud.Features
                 content.Headers.Add("X-Li-Destination", shareHeader);
 
                 long fileSize = 0;
-                var dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar + "toCloud";
+                var dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar + Constants.Dirs.ToCloud;
                 Directory.CreateDirectory(dir);
-                testFile = dir + Path.DirectorySeparatorChar + System.Guid.NewGuid() + ".gz";
+                testFile = dir + Path.DirectorySeparatorChar + Guid.NewGuid() + ".gz";
 
                 using (FileStream compressedFileStream = File.Create(testFile))
                 {

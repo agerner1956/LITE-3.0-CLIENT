@@ -143,8 +143,14 @@ namespace Lite.Services.Connections
 
                 //read the persisted RoutedItems bound for Cloud
 
-                dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar +
-                      "toCloud" + Path.DirectorySeparatorChar + Constants.Dirs.Meta;
+                dir = _profileStorage.Current.tempPath +
+                    Path.DirectorySeparatorChar +
+                    Connection.name +
+                    Path.DirectorySeparatorChar +
+                    Constants.Dirs.ToCloud +
+                    Path.DirectorySeparatorChar +
+                    Constants.Dirs.Meta;
+
                 Directory.CreateDirectory(dir);
                 fileEntries = _util.DirSearch(dir, Constants.Extensions.MetaExt.ToSearchPattern());
 
@@ -167,8 +173,14 @@ namespace Lite.Services.Connections
 
             //read the persisted RoutedItems bound for Rules
 
-            dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar + "toRules" +
-                  Path.DirectorySeparatorChar + Constants.Dirs.Meta;
+            dir = _profileStorage.Current.tempPath +
+                Path.DirectorySeparatorChar +
+                Connection.name +
+                Path.DirectorySeparatorChar +
+                Constants.Dirs.ToRules +
+                Path.DirectorySeparatorChar +
+                Constants.Dirs.Meta;
+
             Directory.CreateDirectory(dir);
             fileEntries = _util.DirSearch(dir, Constants.Extensions.MetaExt.ToSearchPattern());
 
@@ -211,6 +223,7 @@ namespace Lite.Services.Connections
         public async Task KeepAlive()
         {
             await _keepAliveService.KeepAlive(Connection, GetHttpManager());
+            LITETask.Stop($"{Connection.name}.KeepAlive");
         }
 
         public async Task<bool> Ping()

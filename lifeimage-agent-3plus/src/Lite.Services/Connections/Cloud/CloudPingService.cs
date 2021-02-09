@@ -4,7 +4,6 @@ using Lite.Services.Http;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Lite.Services.Connections.Cloud
@@ -16,8 +15,6 @@ namespace Lite.Services.Connections.Cloud
 
     public sealed class CloudPingService : ICloudPingService
     {
-        public const string PingUrl = "/api/agent/v1/ping";
-
         private readonly ILiteHttpClient _liteHttpClient;
         private readonly ILogger _logger;
 
@@ -27,7 +24,7 @@ namespace Lite.Services.Connections.Cloud
         {
             _liteHttpClient = liteHttpClient;
             _logger = logger;
-        }
+        }        
 
         public async Task<bool> Ping(LifeImageCloudConnection Connection, IHttpManager httpManager)
         {
@@ -44,7 +41,7 @@ namespace Lite.Services.Connections.Cloud
                 {
                     try
                     {
-                        var task = httpClient.GetAsync(Connection.URL + PingUrl);
+                        var task = httpClient.GetAsync(Connection.URL + CloudAgentConstants.PingUrl);
                         var result = await task;
 
                         if (result.StatusCode == HttpStatusCode.OK)

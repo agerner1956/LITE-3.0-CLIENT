@@ -1,4 +1,5 @@
-﻿using Lite.Core.Connections;
+﻿using Lite.Core;
+using Lite.Core.Connections;
 using Lite.Core.Interfaces;
 using Lite.Core.Models;
 using Lite.Core.Utils;
@@ -70,7 +71,7 @@ namespace Lite.Services.Studies
             stopWatch.Start();
             string url = $"{study.url}";
             string dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + Connection.name + Path.DirectorySeparatorChar +
-                         "toRules" + Path.DirectorySeparatorChar + System.Guid.NewGuid();
+                         Constants.Dirs.ToRules + Path.DirectorySeparatorChar + Guid.NewGuid();
             long fileSize = 0;
             HttpResponseMessage response = null;
             MultipartFileStreamProvider streamProvider = null;

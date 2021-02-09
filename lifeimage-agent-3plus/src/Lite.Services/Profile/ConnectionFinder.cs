@@ -64,6 +64,11 @@ namespace Lite.Services
             return (LifeImageCloudConnection)profile.connections.Find(a => a.connType == ConnectionType.cloud && ((LifeImageCloudConnection)a).isPrimary);
         }
 
+        public LITEConnection GetPrimaryLITEConnection(Profile profile)
+        {
+            return (LITEConnection)profile.connections.Find(a => a.connType == ConnectionType.lite && ((LITEConnection)a).isPrimary);
+        }
+
         public DICOMConnection GetDicomConnectionToLocalAETitle(Profile profile, string localAETitle)
         {
             Throw.IfNull(profile);

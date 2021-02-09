@@ -1,8 +1,8 @@
 {
     "name": "Bootstrap",
     "startupParams": {
-        "localProfilePath": "Profiles/DefaultProfile.json",
-        "saveProfilePath": "Profiles/DefaultProfile.json",
+        "localProfilePath": "Profiles/Demo/Alex.json",
+        "saveProfilePath": "Profiles/igor.json",
         "getServerProfile": true,
         "putServerProfile": true,
         "generateSchema": false,

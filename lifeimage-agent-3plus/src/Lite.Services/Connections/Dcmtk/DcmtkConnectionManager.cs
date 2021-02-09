@@ -1,4 +1,5 @@
-﻿using Lite.Core.Connections;
+﻿using Lite.Core;
+using Lite.Core.Connections;
 using Lite.Core.Enums;
 using Lite.Core.Interfaces;
 using Lite.Core.Models;
@@ -57,7 +58,7 @@ namespace Lite.Services.Connections.Dcmtk
         {
             base.ProcessImpl(connection);
 
-            Connection.storescpCfgFile = _util.GetTempFolder() + Path.DirectorySeparatorChar + "Profiles" + Path.DirectorySeparatorChar + "storescp.cfg";
+            Connection.storescpCfgFile = _util.GetTempFolder() + Path.DirectorySeparatorChar + Constants.Dirs.Profiles + Path.DirectorySeparatorChar + "storescp.cfg";
             Connection.toDicom.CollectionChanged += ToDicomCollectionChanged;
         }
 

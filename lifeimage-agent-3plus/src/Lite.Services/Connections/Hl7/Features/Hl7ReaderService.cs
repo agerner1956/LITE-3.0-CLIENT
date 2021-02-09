@@ -1,4 +1,5 @@
-﻿using Lite.Core.Connections;
+﻿using Lite.Core;
+using Lite.Core.Connections;
 using Lite.Core.Enums;
 using Lite.Core.Interfaces;
 using Lite.Core.Models;
@@ -84,8 +85,13 @@ namespace Lite.Services.Connections.Hl7.Features
                                 string controlId = "";
                                 byte[] tmp = new byte[bytesRead];
                                 Array.Copy(buffer, tmp, bytesRead);
-                                var dir = _profileStorage.Current.tempPath + Path.DirectorySeparatorChar + Connection.name +
-                                          Path.DirectorySeparatorChar + "toRules";
+
+                                var dir = _profileStorage.Current.tempPath +
+                                    Path.DirectorySeparatorChar +
+                                    Connection.name +
+                                    Path.DirectorySeparatorChar +
+                                    Constants.Dirs.ToRules;
+
                                 Directory.CreateDirectory(dir);
                                 var filename = dir + Path.DirectorySeparatorChar + Connection.name + "_" +
                                                DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss.ffff") + ".hl7";

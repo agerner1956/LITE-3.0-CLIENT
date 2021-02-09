@@ -1,4 +1,5 @@
-﻿using Lite.Core.Guard;
+﻿using Lite.Core;
+using Lite.Core.Guard;
 using Lite.Core.Interfaces;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
@@ -10,9 +11,6 @@ namespace Lite.Services
 {
     public sealed class RegistryHelper : IRegistryHelper
     {
-        // todo: move to the global constants
-        public const string productKey = "{8FF5582B-FB88-4709-A87A-1F4953B8A0D7}";
-
         private readonly ILogger _logger;
 
         public RegistryHelper(ILogger logger)
@@ -53,7 +51,7 @@ namespace Lite.Services
 
         public void RegisterProduct(string version)
         {
-            var registryKeyPath = $"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{productKey}";
+            var registryKeyPath = $"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{Constants.ProductKey}";
             RegisterKey(registryKeyPath, version);
         }
     }

@@ -3,7 +3,6 @@ using Lite.Services.Http;
 using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
@@ -52,7 +51,8 @@ namespace Lite.Services.Connections.Lite.Features
                 foreach (var iPAddress in hostEntry.AddressList)
                 {
                     //set the URL
-                    string url = Connection.URL + "/api/LITE";
+                    //string url = Connection.URL + "/api/LITE";
+                    string url = Connection.URL + LiteAgentConstants.BaseUrl;
                     _logger.Log(LogLevel.Debug, $"{taskInfo} url: {url}");
 
                     // issue the POST

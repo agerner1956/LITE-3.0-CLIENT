@@ -9,5 +9,6 @@ namespace Lite.Core.Utils
         byte[] ReadBytesFromFile(string fileName);
         bool IsDiskAvailable(string path, Profile profile, long length = 0);
         void MoveFileToErrorFolder(string tempPath, string filePath, string name = "");
+        void DeleteAndForget(string file, string taskInfo = null);
     }
 }

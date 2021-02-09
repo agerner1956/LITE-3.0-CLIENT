@@ -100,7 +100,7 @@ namespace Lite.Services.Connections.Dcmtk
         {
             //read the persisted RoutedItems bound for Rules
 
-            var toRulesRoutes = ReadRouteItemsByPath(Connection, "toRules");
+            var toRulesRoutes = ReadRouteItemsByPath(Connection, Constants.Dirs.ToRules);
 
             foreach (var st in toRulesRoutes)
             {

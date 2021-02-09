@@ -47,7 +47,8 @@ namespace Lite.Services
             try
             {
                 //set the URL
-                string profileURL = conn.URL + $"/api/agent/v1/agent-configuration?version={Profile.rowVersion}";
+                //string profileURL = conn.URL + $"/api/agent/v1/agent-configuration?version={Profile.rowVersion}";
+                string profileURL = conn.URL + CloudAgentConstants.AgentConfigurationUrl + $"version={Profile.rowVersion}";
                 _logger.Log(LogLevel.Debug, $"{taskInfo} putProfileURL: {profileURL}");
 
                 // validate and put any errors in the profile so it can be returned to the server

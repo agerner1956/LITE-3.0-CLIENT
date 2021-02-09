@@ -42,7 +42,8 @@ namespace Lite.Services.Connections.Lite.Features
 
             HttpResponseMessage response = null;
 
-            string resourceURL = Connection.URL + "/api/File/" + routedItem.box + "/" + routedItem.resource;
+            //string resourceURL = Connection.URL + "/api/File/" + routedItem.box + "/" + routedItem.resource;
+            string resourceURL = Connection.URL + FileAgentConstants.GetDeleteUrl(routedItem);
 
             var httpClient = _liteHttpClient.GetClient(Connection);
 
